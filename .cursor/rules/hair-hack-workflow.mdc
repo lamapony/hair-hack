@@ -1,0 +1,49 @@
+---
+description: Hair Hack development workflow — spec before code, skills from addyosmani/agent-skills
+alwaysApply: true
+---
+
+# Hair Hack — Agent Workflow
+
+This project uses [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills). Skills live in `.cursor/skills/` (symlinks to `.vendor/agent-skills/skills/`).
+
+## Lifecycle
+
+```
+DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
+/spec    /plan   /build  /test    /review   /ship
+```
+
+| Phase | Skill | Project doc |
+|-------|-------|-------------|
+| Define | `spec-driven-development` | `docs/SPEC.md` |
+| Plan | `planning-and-task-breakdown` | `docs/PLAN.md` |
+| Tasks | `planning-and-task-breakdown` | `docs/TASKS.md` |
+| Build | `incremental-implementation` + `test-driven-development` | — |
+| UI | `frontend-ui-engineering` | — |
+| API | `api-and-interface-design` | — |
+| Verify | `browser-testing-with-devtools` | — |
+| Review | `code-review-and-quality` | — |
+| Ship | `shipping-and-launch` + `security-and-hardening` | — |
+
+## Rules
+
+1. **Spec before code** — read `docs/SPEC.md` before non-trivial changes. Update the spec when scope changes.
+2. **Surface assumptions** — list assumptions explicitly before implementing; ask when requirements conflict.
+3. **Incremental slices** — one verifiable change at a time; run `npm run build` after each slice.
+4. **No secrets in git** — `.env.local` only; never commit API keys.
+5. **Medical disclaimer** — UI must state this is not medical advice; previews are illustrative only.
+
+## Commands
+
+```bash
+npm run dev      # local dev
+npm run build    # production build check
+npm run lint     # lint
+```
+
+## Boundaries
+
+- **Always:** validate uploads server-side; keep prompts in `src/lib/prompts.ts`; TypeScript strict.
+- **Ask first:** new dependencies, schema/DB, payment, storing user photos, changing image model.
+- **Never:** commit `.env.local`; remove error handling to ship faster; claim medical outcomes.
