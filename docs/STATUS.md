@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | 🔄 Phase 1 foundation ~60% |
-| VERIFY | `test-driven-development` | 🔄 21 unit tests; route E2E pending |
+| VERIFY | `test-driven-development` | 🔄 24 unit tests; route E2E pending |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** slider (T1.4.1) → rate limits → route tests.
+**Current BUILD focus:** clinic copy (T1.4.3) → rate limits → route tests.
 
 ---
 
@@ -37,7 +37,7 @@
 | T1.2.3 | Client resize | ○ | Optional |
 | T1.3.1 | Rate limiting | ○ | Not started |
 | T1.3.2 | Env docs | 🔄 | `.env.example` partial |
-| T1.4.1 | Slider compare | ○ | Side-by-side only today |
+| T1.4.1 | Slider compare | ✅ | Drag handle + keyboard; replaces side-by-side |
 | T1.4.2 | Consent (4 checkboxes) | ✅ | UI + API validation; banner + post-result reminder |
 | T1.4.3 | Clinic copy | ○ | Generic MVP copy |
 | T1.4.4 | Loading + cancel | ○ | Spinner only |
@@ -105,10 +105,10 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **T1.4.1** — slider (`frontend-ui-engineering`)
-2. **T1.4.3** — clinic copy pass
-3. **T1.3.1** — rate limits (`api-and-interface-design`)
-4. **TL.2** — `/privacy` + `/terms` placeholder pages
+1. **T1.4.3** — clinic copy pass
+2. **T1.3.1** — rate limits (`api-and-interface-design`)
+3. **TL.2** — `/privacy` + `/terms` placeholder pages
+4. **T1.1.4** — route integration tests
 5. **T3D.1** — Hairgen spike (parallel, separate branch)
 
 ---
