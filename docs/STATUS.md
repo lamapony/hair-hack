@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | 🔄 Phase 1 foundation ~60% |
-| VERIFY | `test-driven-development` | 🔄 16 unit tests; route E2E pending |
+| VERIFY | `test-driven-development` | 🔄 21 unit tests; route E2E pending |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** finish foundation commit → UX slice (consent + slider) → rate limits.
+**Current BUILD focus:** slider (T1.4.1) → rate limits → route tests.
 
 ---
 
@@ -27,7 +27,7 @@
 
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
-| T1.0.1 | Git + GitHub | ✅ | `lamapony/hair-hack`; foundation commit pending push |
+| T1.0.1 | Git + GitHub | ✅ | `lamapony/hair-hack` on `main` |
 | T1.1.1 | Vitest | ✅ | `npm test` |
 | T1.1.2 | `image.ts` + tests | ✅ | 5 tests |
 | T1.1.3 | Prompt tests | ✅ | 2 tests |
@@ -38,10 +38,10 @@
 | T1.3.1 | Rate limiting | ○ | Not started |
 | T1.3.2 | Env docs | 🔄 | `.env.example` partial |
 | T1.4.1 | Slider compare | ○ | Side-by-side only today |
-| T1.4.2 | Consent (4 checkboxes) | ○ | Footer disclaimer only |
+| T1.4.2 | Consent (4 checkboxes) | ✅ | UI + API validation; banner + post-result reminder |
 | T1.4.3 | Clinic copy | ○ | Generic MVP copy |
 | T1.4.4 | Loading + cancel | ○ | Spinner only |
-| T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` (needs push) |
+| T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` on `main` |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
@@ -66,12 +66,12 @@
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
 | — | Risk register | ✅ | [legal/COMPLIANCE.md](./legal/COMPLIANCE.md) |
-| TL.1 | Consent UI (4 boxes) | ○ | Maps to T1.4.2 |
+| TL.1 | Consent UI (4 boxes) | ✅ | L-T1 + L-T2 partial (banner/footer); maps to T1.4.2 |
 | TL.2 | `/privacy` + `/terms` | ○ | Placeholder pages |
 | TL.3 | Counsel review package | ○ | Needs lawyer |
 | TL.4 | Deploy gate | ○ | Env check |
 
-**Hard gate:** no paying clinic pilot until TL.1–TL.3 + counsel sign-off in COMPLIANCE.md.
+**Hard gate:** no paying clinic pilot until TL.2–TL.3 + counsel sign-off in COMPLIANCE.md.
 
 ---
 
@@ -105,17 +105,17 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **Push foundation** — commit lib + tests + CI (unblocks team + CI)
-2. **T1.4.2 + TL.1** — consent UI (`frontend-ui-engineering` + `security-and-hardening`)
-3. **T1.4.1** — slider (`frontend-ui-engineering`)
-4. **T1.3.1** — rate limits (`api-and-interface-design`)
+1. **T1.4.1** — slider (`frontend-ui-engineering`)
+2. **T1.4.3** — clinic copy pass
+3. **T1.3.1** — rate limits (`api-and-interface-design`)
+4. **TL.2** — `/privacy` + `/terms` placeholder pages
 5. **T3D.1** — Hairgen spike (parallel, separate branch)
 
 ---
 
 ## Repo hygiene checklist
 
-- [ ] `main` has latest foundation (tests, CI, providers)
+- [x] `main` has latest foundation (tests, CI, providers)
 - [ ] Collaborators invited on GitHub
 - [ ] Each dev ran `./scripts/install-agent-skills.sh`
 - [ ] No `.env.local` in git

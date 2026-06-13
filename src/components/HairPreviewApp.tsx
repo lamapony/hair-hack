@@ -1,6 +1,16 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { ConsentAttestation } from "@/components/ConsentAttestation";
+import { DisclaimerBanner } from "@/components/DisclaimerBanner";
+import { PostResultReminder } from "@/components/PostResultReminder";
+import {
+  createEmptyConsent,
+  FOOTER_DISCLAIMER,
+  isConsentComplete,
+  type ConsentId,
+  type StaffConsent,
+} from "@/lib/consent";
 import {
   GOAL_HINTS,
   GOAL_LABELS,
@@ -20,12 +30,25 @@ export function HairPreviewApp() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
+  const [consent, setConsent] = useState<StaffConsent>(createEmptyConsent);
 
   const resetResult = () => {
     setPreview(null);
     setStatus("idle");
     setError(null);
   };
+
+  const resetConsent = () => {
+    setConsent(createEmptyConsent());
+  };
+
+  const updateConsent = (id: ConsentId, checked: boolean) => {
+    setConsent((current) => ({ ...current, [id]: checked }));
+  };
+
+  const consentComplete = isConsentComplete(consent);
+  const canGenerate =
+    Boolean(original) && consentComplete && status !== "loading";
 
   const readFile = useCallback((file: File) => {
     if (!file.type.startsWith("image/")) {
@@ -41,6 +64,7 @@ export function HairPreviewApp() {
     reader.onload = () => {
       setOriginal(reader.result as string);
       resetResult();
+      resetConsent();
     };
     reader.readAsDataURL(file);
   }, []);
@@ -53,7 +77,7 @@ export function HairPreviewApp() {
   };
 
   const generate = async () => {
-    if (!original) return;
+    if (!original || !consentComplete) return;
 
     setStatus("loading");
     setError(null);
@@ -63,7 +87,7 @@ export function HairPreviewApp() {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image: original, goal }),
+        body: JSON.stringify({ image: original, goal, consent }),
       });
 
       const data = await res.json();
@@ -99,11 +123,14 @@ export function HairPreviewApp() {
           Hair Hack
         </h1>
         <p className="mt-2 max-w-xl text-[var(--muted)]">
-          Upload a photo and get an AI preview of treatment results via OpenAI.
+          In-clinic AI preview for consultation discussions. Staff-operated
+          demo — not a medical outcome guarantee.
         </p>
       </header>
 
-      <div className="grid flex-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
+      <DisclaimerBanner />
+
+      <div className="mt-8 grid flex-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
         <section className="flex flex-col gap-6">
           <div>
             <p className="mb-3 text-sm font-medium text-[var(--muted)]">
@@ -172,14 +199,26 @@ export function HairPreviewApp() {
             </div>
           </div>
 
+          <ConsentAttestation
+            consent={consent}
+            onChange={updateConsent}
+            disabled={!original || status === "loading"}
+          />
+
           <button
             type="button"
-            disabled={!original || status === "loading"}
+            disabled={!canGenerate}
             onClick={generate}
             className="rounded-xl bg-[var(--accent)] px-6 py-3.5 font-semibold text-[#0c0f14] transition enabled:hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {status === "loading" ? "Generating…" : "Generate preview"}
           </button>
+
+          {original && !consentComplete && status !== "loading" && (
+            <p className="text-sm text-[var(--muted)]">
+              Complete all staff attestations to enable generation.
+            </p>
+          )}
 
           {error && (
             <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
@@ -254,11 +293,13 @@ export function HairPreviewApp() {
               )}
             </div>
           )}
+
+          {preview && status === "done" && <PostResultReminder />}
         </section>
       </div>
 
-      <footer className="mt-12 border-t border-[var(--border)] pt-6 text-center text-xs text-[var(--muted)]">
-        MVP demo · not medical advice
+      <footer className="mt-12 border-t border-[var(--border)] pt-6 text-center text-xs leading-relaxed text-[var(--muted)]">
+        {FOOTER_DISCLAIMER}
       </footer>
     </div>
   );
