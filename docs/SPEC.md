@@ -315,5 +315,5 @@ _None blocking Phase 1 — all resolved 2026-06-13._
 | i18n | ❌ | English only |
 | Rate limiting | ❌ | None |
 | Disclaimer | ⚠️ | Footer only, small text |
-| Compare UX | ⚠️ | Side-by-side; no slider |
+| Compare UX | ✅ | Before/after drag slider with keyboard support |
 | CI | ❌ | No GitHub Actions |

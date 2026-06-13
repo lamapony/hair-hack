@@ -47,7 +47,7 @@ Uses [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) for s
 
 1. Consultant uploads prospect photo (face / crown).
 2. `POST /api/generate` calls `openai.images.edit` with a goal-specific prompt.
-3. Result shown next to original (slider compare in Phase 1).
+3. Drag the before/after slider to compare with the AI result.
 
 ## Environment
 

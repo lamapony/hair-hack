@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { ConsentAttestation } from "@/components/ConsentAttestation";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
+import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
 import { PostResultReminder } from "@/components/PostResultReminder";
 import {
   createEmptyConsent,
@@ -248,50 +249,29 @@ export function HairPreviewApp() {
             </div>
           )}
 
-          {(original || preview) && status !== "loading" && (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {original && (
-                <figure className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
-                  <figcaption className="border-b border-[var(--border)] px-4 py-2 text-xs font-medium tracking-wide text-[var(--muted)] uppercase">
-                    Before
-                  </figcaption>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={original}
-                    alt="Original photo"
-                    className="aspect-square w-full object-cover"
-                  />
-                </figure>
-              )}
-              {preview ? (
-                <figure className="overflow-hidden rounded-2xl border border-[var(--accent)] bg-[var(--surface)]">
-                  <figcaption className="flex items-center justify-between border-b border-[var(--border)] px-4 py-2">
-                    <span className="text-xs font-medium tracking-wide text-[var(--accent)] uppercase">
-                      After (AI)
-                    </span>
-                    <button
-                      type="button"
-                      onClick={downloadPreview}
-                      className="text-xs text-[var(--muted)] hover:text-[var(--text)]"
-                    >
-                      Download
-                    </button>
-                  </figcaption>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={preview}
-                    alt="AI preview"
-                    className="aspect-square w-full object-cover"
-                  />
-                </figure>
-              ) : (
-                original && (
-                  <div className="flex aspect-square items-center justify-center rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] p-6 text-center text-sm text-[var(--muted)]">
-                    Click “Generate preview”
-                  </div>
-                )
-              )}
-            </div>
+          {original && preview && status === "done" && (
+            <BeforeAfterSlider
+              beforeSrc={original}
+              afterSrc={preview}
+              onDownloadAfter={downloadPreview}
+            />
+          )}
+
+          {original && !preview && status !== "loading" && (
+            <figure className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
+              <figcaption className="border-b border-[var(--border)] px-4 py-2 text-xs font-medium tracking-wide text-[var(--muted)] uppercase">
+                Before
+              </figcaption>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={original}
+                alt="Original photo"
+                className="aspect-square w-full object-cover"
+              />
+              <p className="border-t border-[var(--border)] px-4 py-3 text-center text-sm text-[var(--muted)]">
+                Click “Generate preview” to compare with the AI result
+              </p>
+            </figure>
           )}
 
           {preview && status === "done" && <PostResultReminder />}

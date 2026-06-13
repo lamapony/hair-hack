@@ -54,7 +54,7 @@ Status: `done` | `partial` | `pending`
 
 ## Phase 1.4 — Clinic demo UX
 
-### T1.4.1 Before/after slider — `pending`
+### T1.4.1 Before/after slider — `done`
 
 **Skill:** `frontend-ui-engineering`
 
