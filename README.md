@@ -8,6 +8,7 @@ In-clinic demo: upload a photo → AI preview of hair restoration via **OpenAI I
 |------|-------------|
 | [docs/SPEC.md](docs/SPEC.md) | Product & technical spec |
 | [docs/PLAN.md](docs/PLAN.md) | Phases & architecture |
+| [docs/STATUS.md](docs/STATUS.md) | **Track dashboard** — start here |
 | [docs/TASKS.md](docs/TASKS.md) | Phase 1 task backlog |
 | [docs/COLLABORATION.md](docs/COLLABORATION.md) | Team workflow & GitHub |
 | [docs/legal/COMPLIANCE.md](docs/legal/COMPLIANCE.md) | Legal risk register & gates |
@@ -58,8 +59,20 @@ Uses [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) for s
 ## Stack
 
 - Next.js 15 (App Router)
-- OpenAI SDK
+- OpenAI SDK (`gpt-image-2` via provider adapter)
 - Tailwind CSS 4
+- Vitest (unit tests)
+- GitHub Actions CI
+
+## Dev commands
+
+```bash
+npm run dev          # local server
+npm test             # unit tests
+npm run test:watch   # tests in watch mode
+npm run typecheck    # tsc --noEmit
+npm run check        # typecheck + test + build
+```
 
 ## Status
 

@@ -1,49 +1,59 @@
 ---
-description: Hair Hack development workflow — spec before code, skills from addyosmani/agent-skills
+description: Hair Hack — agent-skills workflow (addyosmani/agent-skills)
 alwaysApply: true
 ---
 
 # Hair Hack — Agent Workflow
 
-This project uses [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills). Skills live in `.cursor/skills/` (symlinks to `.vendor/agent-skills/skills/`).
+Skills: [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) via `.cursor/skills/` (run `./scripts/install-agent-skills.sh` after clone).
+
+**Status dashboard:** `docs/STATUS.md` — read before starting work.
 
 ## Lifecycle
 
 ```
 DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
-/spec    /plan   /build  /test    /review   /ship
 ```
 
-| Phase | Skill | Project doc |
-|-------|-------|-------------|
+| Phase | Skill | Doc |
+|-------|-------|-----|
 | Define | `spec-driven-development` | `docs/SPEC.md` |
-| Plan | `planning-and-task-breakdown` | `docs/PLAN.md` |
-| Tasks | `planning-and-task-breakdown` | `docs/TASKS.md` |
-| Build | `incremental-implementation` + `test-driven-development` | — |
-| UI | `frontend-ui-engineering` | — |
-| API | `api-and-interface-design` | — |
-| Verify | `browser-testing-with-devtools` | — |
-| Review | `code-review-and-quality` | — |
-| Ship | `shipping-and-launch` + `security-and-hardening` | — |
+| Plan | `planning-and-task-breakdown` | `docs/PLAN.md`, `docs/TASKS.md` |
+| Build | `incremental-implementation` | one task ID per branch |
+| UI | `frontend-ui-engineering` | |
+| API | `api-and-interface-design` | |
+| Tests | `test-driven-development` | |
+| Browser QA | `browser-testing-with-devtools` | |
+| Review | `code-review-and-quality` | before every PR |
+| Legal UI | `security-and-hardening` | `docs/legal/COMPLIANCE.md` |
+| Ship | `shipping-and-launch` | after Phase 1 + legal gate |
 
-## Rules
+## Operating rules (non-negotiable)
 
-1. **Spec before code** — read `docs/SPEC.md` before non-trivial changes. Update the spec when scope changes.
-2. **Surface assumptions** — list assumptions explicitly before implementing; ask when requirements conflict.
-3. **Incremental slices** — one verifiable change at a time; run `npm run build` after each slice.
-4. **No secrets in git** — `.env.local` only; never commit API keys.
-5. **Medical disclaimer** — UI must state this is not medical advice; previews are illustrative only.
+1. **Task before code** — pick an ID from `docs/TASKS.md`; scope change → update `docs/SPEC.md` first.
+2. **One slice** — implement → `npm run check` → commit → update `docs/STATUS.md`.
+3. **Surface assumptions** — list them before non-trivial work.
+4. **No secrets in git** — `.env.local` only.
+5. **Legal** — consent + disclaimers per `docs/legal/COMPLIANCE.md`; no clinic pilot before counsel sign-off.
 
 ## Commands
 
 ```bash
-npm run dev      # local dev
-npm run build    # production build check
-npm run lint     # lint
+npm run dev
+npm test
+npm run typecheck
+npm run check          # typecheck + test + build — run before PR
+./scripts/install-agent-skills.sh
 ```
+
+## PR format
+
+- Branch: `feature/T1.4.1-slider`
+- Title: `T1.4.1: before/after slider`
+- Body: link task, `npm run check` result, screenshots if UI
 
 ## Boundaries
 
-- **Always:** validate uploads server-side; keep prompts in `src/lib/prompts.ts`; TypeScript strict.
-- **Ask first:** new dependencies, schema/DB, payment, storing user photos, changing image model.
-- **Never:** commit `.env.local`; remove error handling to ship faster; claim medical outcomes.
+- **Always:** server-side validation; prompts in `src/lib/prompts.ts`; providers via `src/lib/providers/`.
+- **Ask first:** new deps, persist photos, new image provider, production deploy.
+- **Never:** commit secrets; raw OpenAI errors to UI; skip tests to ship.

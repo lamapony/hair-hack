@@ -32,6 +32,17 @@ For **shared dev API key:** one key in the team password manager; rotate if some
 
 For **production:** separate key in Vercel env vars only.
 
+## Quality gates (run before every PR)
+
+```bash
+npm run typecheck   # TypeScript
+npm test            # Vitest unit tests
+npm run build       # Next.js production build
+npm run check       # all of the above
+```
+
+CI runs the same on GitHub Actions for every push/PR to `main`.
+
 ## Branch workflow
 
 ```

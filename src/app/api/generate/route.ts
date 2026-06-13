@@ -1,41 +1,21 @@
-import OpenAI, { toFile } from "openai";
 import { NextRequest, NextResponse } from "next/server";
-import { buildPrompt } from "@/lib/prompts";
-import type { ErrorResponse, GenerateResponse, PreviewGoal } from "@/lib/types";
+import { mapGenerationError } from "@/lib/errors";
+import { getImageProvider } from "@/lib/providers";
+import type { ErrorResponse, GenerateResponse } from "@/lib/types";
+import { validateGenerateRequest } from "@/lib/validate";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
 
-const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2";
-const VALID_GOALS: PreviewGoal[] = ["density", "hairline", "full"];
-const MAX_BYTES = 8 * 1024 * 1024;
-
-function parseDataUrl(dataUrl: string): { buffer: Buffer; mime: string } | null {
-  const match = dataUrl.match(/^data:(image\/(?:jpeg|png|webp));base64,(.+)$/);
-  if (!match) return null;
-
-  const mime = match[1];
-  const buffer = Buffer.from(match[2], "base64");
-  if (buffer.length > MAX_BYTES) return null;
-
-  return { buffer, mime };
-}
-
-function extensionForMime(mime: string): string {
-  if (mime === "image/png") return "png";
-  if (mime === "image/webp") return "webp";
-  return "jpg";
-}
-
 export async function POST(req: NextRequest) {
-  if (!process.env.OPENAI_API_KEY) {
+  if (!process.env.OPENAI_API_KEY && process.env.IMAGE_PROVIDER !== "hairgen") {
     return NextResponse.json<ErrorResponse>(
       { error: "OPENAI_API_KEY is not set. Add your key to .env.local" },
       { status: 500 },
     );
   }
 
-  let body: { image?: string; goal?: PreviewGoal };
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
@@ -45,67 +25,36 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { image, goal } = body;
-  if (!image || typeof image !== "string") {
+  const validation = validateGenerateRequest(body);
+  if (!validation.ok) {
     return NextResponse.json<ErrorResponse>(
-      { error: "Please upload a photo" },
-      { status: 400 },
+      { error: validation.error },
+      { status: validation.status },
     );
   }
 
-  if (!goal || !VALID_GOALS.includes(goal)) {
-    return NextResponse.json<ErrorResponse>(
-      { error: "Please select a preview goal" },
-      { status: 400 },
-    );
-  }
-
-  const parsed = parseDataUrl(image);
-  if (!parsed) {
-    return NextResponse.json<ErrorResponse>(
-      { error: "JPEG, PNG, or WebP up to 8 MB supported" },
-      { status: 400 },
-    );
-  }
-
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const ext = extensionForMime(parsed.mime);
-  const file = await toFile(parsed.buffer, `photo.${ext}`, { type: parsed.mime });
+  const { buffer, mime, goal } = validation.data;
 
   try {
-    const result = await openai.images.edit({
-      model: IMAGE_MODEL,
-      image: file,
-      prompt: buildPrompt(goal),
-      n: 1,
-      size: "auto",
-    });
-
-    const item = result.data?.[0];
-    if (!item) {
-      return NextResponse.json<ErrorResponse>(
-        { error: "OpenAI returned no image" },
-        { status: 502 },
-      );
-    }
-
-    const output =
-      item.b64_json != null
-        ? `data:image/png;base64,${item.b64_json}`
-        : item.url;
-
-    if (!output) {
-      return NextResponse.json<ErrorResponse>(
-        { error: "Empty response from OpenAI" },
-        { status: 502 },
-      );
-    }
-
-    return NextResponse.json<GenerateResponse>({ image: output, goal });
+    const provider = getImageProvider();
+    const result = await provider.generate({ buffer, mime, goal });
+    return NextResponse.json<GenerateResponse>(result);
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Preview generation failed";
-    console.error("[generate]", message);
-    return NextResponse.json<ErrorResponse>({ error: message }, { status: 502 });
+    if (err instanceof Error && err.message.includes("OPENAI_API_KEY")) {
+      return NextResponse.json<ErrorResponse>(
+        { error: "OPENAI_API_KEY is not set. Add your key to .env.local" },
+        { status: 500 },
+      );
+    }
+    if (err instanceof Error && err.message.includes("Hairgen provider")) {
+      return NextResponse.json<ErrorResponse>({ error: err.message }, { status: 501 });
+    }
+
+    const mapped = mapGenerationError(err);
+    console.error("[generate]", err instanceof Error ? err.message : err);
+    return NextResponse.json<ErrorResponse>(
+      { error: mapped.message },
+      { status: mapped.status },
+    );
   }
 }

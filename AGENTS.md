@@ -12,6 +12,7 @@ Guidance for AI coding agents working in this repository.
 |----------|---------|
 | [docs/SPEC.md](docs/SPEC.md) | Product + technical spec (read first) |
 | [docs/PLAN.md](docs/PLAN.md) | Phased implementation plan |
+| [docs/STATUS.md](docs/STATUS.md) | **Track dashboard** — current phase & task status |
 | [docs/TASKS.md](docs/TASKS.md) | Actionable task backlog with acceptance criteria |
 | [docs/COLLABORATION.md](docs/COLLABORATION.md) | Team workflow, GitHub, secrets |
 | [README.md](README.md) | Quick start for humans |
@@ -48,12 +49,21 @@ Update skills:
 src/
   app/
     page.tsx              → renders HairPreviewApp
-    api/generate/route.ts → POST: image + goal → OpenAI → base64
+    api/generate/route.ts → POST: thin handler (validate → provider → response)
   components/
     HairPreviewApp.tsx    → upload, goal picker, before/after
   lib/
-    types.ts              → PreviewGoal, API types
+    constants.ts          → goals, mime types, size limits
+    image.ts              → parseDataUrl, extensionForMime
+    validate.ts           → validateGenerateRequest
+    errors.ts             → mapGenerationError (user-safe messages)
     prompts.ts            → per-goal edit prompts
+    types.ts              → API types
+    providers/
+      types.ts            → ImageProvider interface
+      openai.ts           → OpenAI images.edit implementation
+      index.ts            → getImageProvider() factory
+tests/unit/               → Vitest (run: npm test)
 ```
 
 ## Environment
@@ -62,6 +72,7 @@ src/
 |----------|----------|-------------|
 | `OPENAI_API_KEY` | yes | OpenAI API key |
 | `OPENAI_IMAGE_MODEL` | no | Default `gpt-image-2` |
+| `IMAGE_PROVIDER` | no | `openai` (default) or `hairgen` (not implemented) |
 
 ## Anti-patterns
 
