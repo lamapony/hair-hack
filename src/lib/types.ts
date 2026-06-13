@@ -1,8 +1,11 @@
+import type { StaffConsent } from "@/lib/consent";
+
 export type PreviewGoal = "density" | "hairline" | "full";
 
 export type GenerateRequest = {
   image: string;
   goal: PreviewGoal;
+  consent: StaffConsent;
 };
 
 export type GenerateResponse = {

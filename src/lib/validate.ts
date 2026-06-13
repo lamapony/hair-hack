@@ -1,6 +1,8 @@
+import { CONSENT_REQUIRED_ERROR, isConsentComplete } from "@/lib/consent";
 import { VALID_PREVIEW_GOALS } from "@/lib/constants";
 import { parseDataUrl } from "@/lib/image";
 import type { GenerateRequest, PreviewGoal } from "@/lib/types";
+import type { StaffConsent } from "@/lib/consent";
 
 export type ValidationSuccess = {
   ok: true;
@@ -29,7 +31,11 @@ export function validateGenerateRequest(
     };
   }
 
-  const { image, goal } = body as { image?: unknown; goal?: unknown };
+  const { image, goal, consent } = body as {
+    image?: unknown;
+    goal?: unknown;
+    consent?: unknown;
+  };
 
   if (!image || typeof image !== "string") {
     return { ok: false, error: "Please upload a photo", status: 400 };
@@ -41,6 +47,14 @@ export function validateGenerateRequest(
     !VALID_PREVIEW_GOALS.includes(goal as PreviewGoal)
   ) {
     return { ok: false, error: "Please select a preview goal", status: 400 };
+  }
+
+  if (!isValidConsent(consent)) {
+    return {
+      ok: false,
+      error: CONSENT_REQUIRED_ERROR,
+      status: 400,
+    };
   }
 
   const parsed = parseDataUrl(image);
@@ -57,8 +71,23 @@ export function validateGenerateRequest(
     data: {
       image,
       goal: goal as PreviewGoal,
+      consent,
       buffer: parsed.buffer,
       mime: parsed.mime,
     },
   };
+}
+
+function isValidConsent(consent: unknown): consent is StaffConsent {
+  if (consent == null || typeof consent !== "object") {
+    return false;
+  }
+
+  const record = consent as Record<string, unknown>;
+  return isConsentComplete({
+    explainedAiOnly: record.explainedAiOnly === true,
+    clientConsent: record.clientConsent === true,
+    noServerRetention: record.noServerRetention === true,
+    clientIsAdult: record.clientIsAdult === true,
+  });
 }

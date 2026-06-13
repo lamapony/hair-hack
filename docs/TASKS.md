@@ -58,7 +58,7 @@ Status: `done` | `partial` | `pending`
 
 **Skill:** `frontend-ui-engineering`
 
-### T1.4.2 Consent + disclaimer (clinic) — `pending`
+### T1.4.2 Consent + disclaimer (clinic) — `done`
 
 **Skill:** `frontend-ui-engineering` + `security-and-hardening`  
 **Legal:** [COMPLIANCE.md](./legal/COMPLIANCE.md) TL.1
@@ -87,7 +87,7 @@ Status: `done` | `partial` | `pending`
 
 ## Track LEGAL
 
-### TL.1 Consent UI — `pending` (→ T1.4.2)
+### TL.1 Consent UI — `done` (→ T1.4.2)
 
 ### TL.2 Policy pages — `pending`
 
