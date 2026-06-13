@@ -4,27 +4,33 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
+    "prebuild": "rm -rf .next/cache",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run test && npm run build"
+    "check": "npm run typecheck && npm run test && rm -rf .next && npm run build"
   },
   "dependencies": {
     "next": "^15.1.0",
     "openai": "^4.77.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "stripe": "^17.7.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.10.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.7.0",
-    "@tailwindcss/postcss": "^4.0.0",
+    "@vitest/coverage-v8": "^3.2.6",
     "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
     "vitest": "^3.2.4"
   }
 }

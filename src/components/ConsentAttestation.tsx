@@ -4,16 +4,24 @@ import {
   type StaffConsent,
 } from "@/lib/consent";
 
+type ConsentItem = { id: ConsentId; label: string };
+
 type ConsentAttestationProps = {
   consent: StaffConsent;
   onChange: (id: ConsentId, checked: boolean) => void;
   disabled?: boolean;
+  items?: readonly ConsentItem[];
+  legend?: string;
+  description?: string;
 };
 
 export function ConsentAttestation({
   consent,
   onChange,
   disabled = false,
+  items = CONSENT_ITEMS,
+  legend = "Staff attestation (required)",
+  description = "Confirm with the client before generating a preview.",
 }: ConsentAttestationProps) {
   return (
     <fieldset
@@ -21,13 +29,11 @@ export function ConsentAttestation({
       disabled={disabled}
     >
       <legend className="px-1 text-sm font-medium text-[var(--text)]">
-        Staff attestation (required)
+        {legend}
       </legend>
-      <p className="mb-3 text-xs text-[var(--muted)]">
-        Confirm with the client before generating a preview.
-      </p>
+      <p className="mb-3 text-xs text-[var(--muted)]">{description}</p>
       <ul className="flex flex-col gap-3">
-        {CONSENT_ITEMS.map((item) => (
+        {items.map((item) => (
           <li key={item.id}>
             <label className="flex cursor-pointer items-start gap-3 text-sm leading-snug">
               <input

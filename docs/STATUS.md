@@ -3,7 +3,18 @@
 **Living dashboard.** Update when a task ships or a track changes.  
 **Workflow:** [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) — DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
 
-**Last updated:** 2026-06-13
+**Last updated:** 2026-06-14
+
+---
+
+## QA baseline (HAI-4)
+
+| Gate | Status |
+|------|--------|
+| `npm run check` | ✅ green (typecheck + 36 tests + build) |
+| `src/lib/*` coverage | ✅ ~94% lines on core modules (`npm run test:coverage`) |
+| Playwright E2E | ✅ scaffold — `tests/e2e/smoke.spec.ts`, `npm run test:e2e` |
+| Obsidian vault | ✅ stubs + [[050 Hair Hack/Exercises/QA_BASELINE\|QA report]] in vault |
 
 ---
 
@@ -15,11 +26,24 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | 🔄 Phase 1 foundation ~60% |
-| VERIFY | `test-driven-development` | 🔄 21 unit tests; route E2E pending |
+| VERIFY | `test-driven-development` | 🔄 36 unit tests; Playwright smoke scaffold |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** slider (T1.4.1) → rate limits → route tests.
+**Current BUILD focus:** DTC shipped ([HAI-1](/HAI/issues/HAI-1)); clinic copy (T1.4.3) → route tests.
+
+---
+
+## Track DTC (direct-to-consumer)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| HAI-1 | `/try` landing + Stripe $9.99 | ✅ | Upload → checkout → gated `/try/result` preview |
+| — | Stripe checkout API | ✅ | `/api/checkout/create`, `/api/checkout/verify` |
+| — | Gated generation | ✅ | `/api/dtc/generate` verifies paid session |
+| — | Consumer consent + disclaimer | ✅ | `dtc-consent.ts`, DTC copy on `/try` |
+
+**Env:** `STRIPE_SECRET_KEY` (+ optional `NEXT_PUBLIC_APP_URL`) in `.env.local`. Test mode keys only until board approves live.
 
 ---
 
@@ -35,9 +59,9 @@
 | T1.2.1 | `validate.ts` | ✅ | 4 tests |
 | T1.2.2 | Error mapping | ✅ | `errors.ts` + 4 tests |
 | T1.2.3 | Client resize | ○ | Optional |
-| T1.3.1 | Rate limiting | ○ | Not started |
-| T1.3.2 | Env docs | 🔄 | `.env.example` partial |
-| T1.4.1 | Slider compare | ○ | Side-by-side only today |
+| T1.3.1 | Rate limiting | ✅ | IP hourly + daily cap on `/api/generate` |
+| T1.3.2 | Env docs | ✅ | `.env.example` documents rate limit vars |
+| T1.4.1 | Slider compare | ✅ | Drag handle + keyboard; replaces side-by-side |
 | T1.4.2 | Consent (4 checkboxes) | ✅ | UI + API validation; banner + post-result reminder |
 | T1.4.3 | Clinic copy | ○ | Generic MVP copy |
 | T1.4.4 | Loading + cancel | ○ | Spinner only |
@@ -105,11 +129,9 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **T1.4.1** — slider (`frontend-ui-engineering`)
+1. **TL.2** — `/privacy` + `/terms` placeholder pages
 2. **T1.4.3** — clinic copy pass
-3. **T1.3.1** — rate limits (`api-and-interface-design`)
-4. **TL.2** — `/privacy` + `/terms` placeholder pages
-5. **T3D.1** — Hairgen spike (parallel, separate branch)
+3. **T3D.1** — Hairgen spike (parallel, separate branch)
 
 ---
 
