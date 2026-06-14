@@ -89,7 +89,7 @@ Status: `done` | `partial` | `pending`
 
 ### TL.1 Consent UI — `done` (→ T1.4.2)
 
-### TL.2 Policy pages — `pending`
+### TL.2 Policy pages — `done`
 
 ### TL.3 Counsel review package — `pending`
 
