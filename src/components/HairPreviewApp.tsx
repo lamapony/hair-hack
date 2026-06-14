@@ -13,6 +13,15 @@ import {
   type StaffConsent,
 } from "@/lib/consent";
 import {
+  CLINIC_ACTIONS,
+  CLINIC_APP,
+  CLINIC_MESSAGES,
+  CLINIC_SECTIONS,
+  CLINIC_SLIDER,
+  CLINIC_UPLOAD,
+  CLINIC_WORKFLOW_STEPS,
+} from "@/lib/clinic-copy";
+import {
   GOAL_HINTS,
   GOAL_LABELS,
   type GenerateResponse,
@@ -118,15 +127,17 @@ export function HairPreviewApp() {
     <div className="mx-auto flex min-h-dvh max-w-5xl flex-col px-4 py-10 sm:px-6">
       <header className="mb-10">
         <p className="mb-2 text-sm font-medium tracking-widest text-[var(--accent)] uppercase">
-          MVP
+          {CLINIC_APP.badge}
         </p>
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Hair Hack
+          {CLINIC_APP.title}
         </h1>
-        <p className="mt-2 max-w-xl text-[var(--muted)]">
-          In-clinic AI preview for consultation discussions. Staff-operated
-          demo — not a medical outcome guarantee.
-        </p>
+        <p className="mt-2 max-w-xl text-[var(--muted)]">{CLINIC_APP.subtitle}</p>
+        <ol className="mt-4 max-w-xl list-decimal space-y-1 pl-5 text-sm text-[var(--muted)]">
+          {CLINIC_WORKFLOW_STEPS.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
       </header>
 
       <DisclaimerBanner />
@@ -135,7 +146,7 @@ export function HairPreviewApp() {
         <section className="flex flex-col gap-6">
           <div>
             <p className="mb-3 text-sm font-medium text-[var(--muted)]">
-              Preview goal
+              {CLINIC_SECTIONS.treatmentFocus}
             </p>
             <div className="flex flex-col gap-2">
               {GOALS.map((g) => (
@@ -192,10 +203,10 @@ export function HairPreviewApp() {
             />
             <div className="text-center">
               <p className="font-medium">
-                {original ? "Replace photo" : "Drop a photo here"}
+                {original ? CLINIC_UPLOAD.replaceTitle : CLINIC_UPLOAD.addTitle}
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                JPEG, PNG, WebP · up to 8 MB
+                {CLINIC_UPLOAD.hint}
               </p>
             </div>
           </div>
@@ -212,12 +223,14 @@ export function HairPreviewApp() {
             onClick={generate}
             className="rounded-xl bg-[var(--accent)] px-6 py-3.5 font-semibold text-[#0c0f14] transition enabled:hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {status === "loading" ? "Generating…" : "Generate preview"}
+            {status === "loading"
+              ? CLINIC_ACTIONS.generating
+              : CLINIC_ACTIONS.generate}
           </button>
 
           {original && !consentComplete && status !== "loading" && (
             <p className="text-sm text-[var(--muted)]">
-              Complete all staff attestations to enable generation.
+              {CLINIC_MESSAGES.consentRequired}
             </p>
           )}
 
@@ -229,23 +242,25 @@ export function HairPreviewApp() {
         </section>
 
         <section className="flex flex-col gap-4">
-          <p className="text-sm font-medium text-[var(--muted)]">Result</p>
+          <p className="text-sm font-medium text-[var(--muted)]">
+            {CLINIC_SECTIONS.consultationPreview}
+          </p>
 
           {status === "loading" && (
             <div className="flex flex-1 flex-col items-center justify-center rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-12">
               <div className="mb-4 h-10 w-10 animate-spin rounded-full border-2 border-[var(--accent)] border-t-transparent" />
               <p className="animate-pulse-soft text-[var(--muted)]">
-                OpenAI is processing your photo…
+                {CLINIC_MESSAGES.loadingPrimary}
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                Usually 30–90 seconds
+                {CLINIC_MESSAGES.loadingSecondary}
               </p>
             </div>
           )}
 
           {status !== "loading" && !original && !preview && (
             <div className="flex flex-1 items-center justify-center rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] p-12 text-center text-[var(--muted)]">
-              Upload a photo to see the comparison
+              {CLINIC_MESSAGES.emptyResult}
             </div>
           )}
 
@@ -260,7 +275,7 @@ export function HairPreviewApp() {
           {original && !preview && status !== "loading" && (
             <figure className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)]">
               <figcaption className="border-b border-[var(--border)] px-4 py-2 text-xs font-medium tracking-wide text-[var(--muted)] uppercase">
-                Before
+                {CLINIC_SLIDER.beforeLabel}
               </figcaption>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -269,7 +284,7 @@ export function HairPreviewApp() {
                 className="aspect-square w-full object-cover"
               />
               <p className="border-t border-[var(--border)] px-4 py-3 text-center text-sm text-[var(--muted)]">
-                Click “Generate preview” to compare with the AI result
+                {CLINIC_MESSAGES.beforeOnly}
               </p>
             </figure>
           )}

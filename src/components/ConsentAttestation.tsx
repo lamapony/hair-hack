@@ -3,6 +3,7 @@ import {
   type ConsentId,
   type StaffConsent,
 } from "@/lib/consent";
+import { CLINIC_CONSENT } from "@/lib/clinic-copy";
 
 type ConsentAttestationProps = {
   consent: StaffConsent;
@@ -21,11 +22,9 @@ export function ConsentAttestation({
       disabled={disabled}
     >
       <legend className="px-1 text-sm font-medium text-[var(--text)]">
-        Staff attestation (required)
+        {CLINIC_CONSENT.legend}
       </legend>
-      <p className="mb-3 text-xs text-[var(--muted)]">
-        Confirm with the client before generating a preview.
-      </p>
+      <p className="mb-3 text-xs text-[var(--muted)]">{CLINIC_CONSENT.helper}</p>
       <ul className="flex flex-col gap-3">
         {CONSENT_ITEMS.map((item) => (
           <li key={item.id}>
