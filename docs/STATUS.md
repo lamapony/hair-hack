@@ -14,12 +14,12 @@
 | DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.4 locked |
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
-| BUILD | `incremental-implementation` | 🔄 Phase 1 ~85% (route tests remain) |
-| VERIFY | `test-driven-development` | 🔄 35 unit tests; route E2E pending |
+| BUILD | `incremental-implementation` | 🔄 Phase 1 ~95% (polish optional) |
+| VERIFY | `test-driven-development` | 🔄 42 unit tests; E2E optional |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** route tests (T1.1.4) → Phase 1 exit QA.
+**Current BUILD focus:** Phase 1 exit QA → T3D.1 spike (parallel).
 
 ---
 
@@ -31,7 +31,7 @@
 | T1.1.1 | Vitest | ✅ | `npm test` |
 | T1.1.2 | `image.ts` + tests | ✅ | 5 tests |
 | T1.1.3 | Prompt tests | ✅ | 2 tests |
-| T1.1.4 | Route tests (mocked) | ⏳ | Provider mocked; HTTP route tests not yet |
+| T1.1.4 | Route tests (mocked) | ✅ | 7 tests on `POST /api/generate` |
 | T1.2.1 | `validate.ts` | ✅ | 4 tests |
 | T1.2.2 | Error mapping | ✅ | `errors.ts` + 4 tests |
 | T1.2.3 | Client resize | ○ | Optional |
@@ -105,9 +105,10 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **T1.1.4** — route integration tests
-2. **T1.4.4** — loading UX + cancel (optional polish)
-3. **T3D.1** — Hairgen spike (parallel, separate branch)
+1. **Phase 1 exit** — manual QA on clinic tablet
+2. **T3D.1** — Hairgen spike (parallel, `spike/hairgen`)
+3. **TL.3** — counsel review package
+4. **T1.4.4** — loading + cancel (optional polish)
 
 ---
 

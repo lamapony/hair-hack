@@ -28,9 +28,9 @@ Status: `done` | `partial` | `pending`
 
 ### T1.1.3 Unit tests for prompts — `done`
 
-### T1.1.4 API route tests (mocked OpenAI) — `pending`
+### T1.1.4 API route tests (mocked OpenAI) — `done`
 
-**Gap:** provider unit test exists; full `POST` handler tests still needed.
+**Shipped:** `tests/unit/generate-route.test.ts` — 7 cases (500/400/200/429 provider + rate limit + 501 Hairgen).
 
 ---
 
