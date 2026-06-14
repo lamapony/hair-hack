@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Link from "next/link";
 import { ConsentAttestation } from "@/components/ConsentAttestation";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { BeforeAfterSlider } from "@/components/BeforeAfterSlider";
@@ -294,7 +295,15 @@ export function HairPreviewApp() {
       </div>
 
       <footer className="mt-12 border-t border-[var(--border)] pt-6 text-center text-xs leading-relaxed text-[var(--muted)]">
-        {FOOTER_DISCLAIMER}
+        <p>{FOOTER_DISCLAIMER}</p>
+        <p className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          <Link href="/privacy" className="text-[var(--accent)] hover:underline">
+            Privacy (draft)
+          </Link>
+          <Link href="/terms" className="text-[var(--accent)] hover:underline">
+            Terms (draft)
+          </Link>
+        </p>
       </footer>
     </div>
   );

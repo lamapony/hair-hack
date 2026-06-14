@@ -14,12 +14,12 @@
 | DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.4 locked |
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
-| BUILD | `incremental-implementation` | 🔄 Phase 1 foundation ~60% |
+| BUILD | `incremental-implementation` | 🔄 Phase 1 ~85% (route tests remain) |
 | VERIFY | `test-driven-development` | 🔄 35 unit tests; route E2E pending |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** TL.2 policy pages → route tests (T1.1.4).
+**Current BUILD focus:** route tests (T1.1.4) → Phase 1 exit QA.
 
 ---
 
@@ -67,7 +67,7 @@
 |----|------|--------|-------|
 | — | Risk register | ✅ | [legal/COMPLIANCE.md](./legal/COMPLIANCE.md) |
 | TL.1 | Consent UI (4 boxes) | ✅ | L-T1 + L-T2 partial (banner/footer); maps to T1.4.2 |
-| TL.2 | `/privacy` + `/terms` | ○ | Placeholder pages |
+| TL.2 | `/privacy` + `/terms` | ✅ | Draft placeholders linked from footer |
 | TL.3 | Counsel review package | ○ | Needs lawyer |
 | TL.4 | Deploy gate | ○ | Env check |
 
@@ -105,8 +105,8 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **TL.2** — `/privacy` + `/terms` placeholder pages
-2. **T1.1.4** — route integration tests
+1. **T1.1.4** — route integration tests
+2. **T1.4.4** — loading UX + cancel (optional polish)
 3. **T3D.1** — Hairgen spike (parallel, separate branch)
 
 ---
