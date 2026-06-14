@@ -53,6 +53,7 @@ export const CLINIC_UPLOAD = {
 export const CLINIC_ACTIONS = {
   generate: "Generate AI illustration",
   generating: "Generating illustration…",
+  cancel: "Cancel generation",
   downloadAfter: "Download illustration",
 } as const;
 

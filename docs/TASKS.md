@@ -65,7 +65,9 @@ Status: `done` | `partial` | `pending`
 
 ### T1.4.3 Clinic-oriented copy pass — `done`
 
-### T1.4.4 Loading UX — `pending`
+### T1.4.4 Loading UX — `done`
+
+**Shipped:** `AbortController` on generate fetch; cancel button in loading panel; in-flight request aborted on goal change or new upload.
 
 ---
 

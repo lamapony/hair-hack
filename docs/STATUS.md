@@ -14,7 +14,7 @@
 | DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.4 locked |
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
-| BUILD | `incremental-implementation` | 🔄 Phase 1 ~95% (polish optional) |
+| BUILD | `incremental-implementation` | ✅ Phase 1 complete (optional T1.2.3) |
 | VERIFY | `test-driven-development` | 🔄 42 unit tests; E2E optional |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
@@ -40,7 +40,7 @@
 | T1.4.1 | Slider compare | ✅ | Drag handle + keyboard; replaces side-by-side |
 | T1.4.2 | Consent (4 checkboxes) | ✅ | UI + API validation; banner + post-result reminder |
 | T1.4.3 | Clinic copy | ✅ | `clinic-copy.ts` + consultation workflow |
-| T1.4.4 | Loading + cancel | ○ | Spinner only |
+| T1.4.4 | Loading + cancel | ✅ | Spinner + AbortController cancel |
 | T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` on `main` |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
@@ -108,7 +108,6 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 1. **Phase 1 exit** — manual QA on clinic tablet
 2. **T3D.1** — Hairgen spike (parallel, `spike/hairgen`)
 3. **TL.3** — counsel review package
-4. **T1.4.4** — loading + cancel (optional polish)
 
 ---
 
