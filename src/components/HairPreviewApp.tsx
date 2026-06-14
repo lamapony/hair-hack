@@ -35,6 +35,7 @@ const GOALS: PreviewGoal[] = ["density", "hairline", "full"];
 
 export function HairPreviewApp() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
   const [goal, setGoal] = useState<PreviewGoal>("full");
   const [original, setOriginal] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -44,6 +45,8 @@ export function HairPreviewApp() {
   const [consent, setConsent] = useState<StaffConsent>(createEmptyConsent);
 
   const resetResult = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
     setPreview(null);
     setStatus("idle");
     setError(null);
@@ -90,6 +93,10 @@ export function HairPreviewApp() {
   const generate = async () => {
     if (!original || !consentComplete) return;
 
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     setStatus("loading");
     setError(null);
     setPreview(null);
@@ -99,6 +106,7 @@ export function HairPreviewApp() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: original, goal, consent }),
+        signal: controller.signal,
       });
 
       const data = await res.json();
@@ -111,9 +119,24 @@ export function HairPreviewApp() {
       setPreview(result.image);
       setStatus("done");
     } catch (err) {
+      if (controller.signal.aborted) {
+        setStatus("idle");
+        return;
+      }
       setError(err instanceof Error ? err.message : "Generation failed");
       setStatus("error");
+    } finally {
+      if (abortRef.current === controller) {
+        abortRef.current = null;
+      }
     }
+  };
+
+  const cancelGeneration = () => {
+    abortRef.current?.abort();
+    abortRef.current = null;
+    setStatus("idle");
+    setError(null);
   };
 
   const downloadPreview = () => {
@@ -256,6 +279,13 @@ export function HairPreviewApp() {
               <p className="mt-1 text-sm text-[var(--muted)]">
                 {CLINIC_MESSAGES.loadingSecondary}
               </p>
+              <button
+                type="button"
+                onClick={cancelGeneration}
+                className="mt-6 rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--muted)] transition hover:border-[var(--muted)] hover:text-[var(--foreground)]"
+              >
+                {CLINIC_ACTIONS.cancel}
+              </button>
             </div>
           )}
 
