@@ -46,9 +46,9 @@ Status: `done` | `partial` | `pending`
 
 ## Phase 1.3 — Rate limiting
 
-### T1.3.1 IP rate limit middleware — `pending`
+### T1.3.1 IP rate limit middleware — `done`
 
-### T1.3.2 Document env vars — `partial`
+### T1.3.2 Document env vars — `done`
 
 ---
 
