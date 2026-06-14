@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | 🔄 Phase 1 foundation ~60% |
-| VERIFY | `test-driven-development` | 🔄 26 unit tests; route E2E pending |
+| VERIFY | `test-driven-development` | 🔄 35 unit tests; route E2E pending |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** rate limits (T1.3.1) → TL.2 policy pages → route tests.
+**Current BUILD focus:** TL.2 policy pages → route tests (T1.1.4).
 
 ---
 
@@ -35,8 +35,8 @@
 | T1.2.1 | `validate.ts` | ✅ | 4 tests |
 | T1.2.2 | Error mapping | ✅ | `errors.ts` + 4 tests |
 | T1.2.3 | Client resize | ○ | Optional |
-| T1.3.1 | Rate limiting | ○ | Not started |
-| T1.3.2 | Env docs | 🔄 | `.env.example` partial |
+| T1.3.1 | Rate limiting | ✅ | IP hourly + optional daily cap on `/api/generate` |
+| T1.3.2 | Env docs | ✅ | `.env.example` documents rate limit vars |
 | T1.4.1 | Slider compare | ✅ | Drag handle + keyboard; replaces side-by-side |
 | T1.4.2 | Consent (4 checkboxes) | ✅ | UI + API validation; banner + post-result reminder |
 | T1.4.3 | Clinic copy | ✅ | `clinic-copy.ts` + consultation workflow |
@@ -105,10 +105,9 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **T1.3.1** — rate limits (`api-and-interface-design`)
-2. **TL.2** — `/privacy` + `/terms` placeholder pages
-3. **T1.1.4** — route integration tests
-4. **T3D.1** — Hairgen spike (parallel, separate branch)
+1. **TL.2** — `/privacy` + `/terms` placeholder pages
+2. **T1.1.4** — route integration tests
+3. **T3D.1** — Hairgen spike (parallel, separate branch)
 
 ---
 
