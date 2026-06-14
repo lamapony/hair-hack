@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import { CLINIC_METADATA } from "@/lib/clinic-copy";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -8,8 +9,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Hair Hack — AI Preview",
-  description: "Upload a photo and get an AI preview of hair restoration results",
+  title: CLINIC_METADATA.title,
+  description: CLINIC_METADATA.description,
 };
 
 export default function RootLayout({

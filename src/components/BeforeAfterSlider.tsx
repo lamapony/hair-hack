@@ -13,6 +13,7 @@ import {
   clampSliderPosition,
   sliderPositionFromPointer,
 } from "@/lib/slider-position";
+import { CLINIC_SLIDER } from "@/lib/clinic-copy";
 
 type BeforeAfterSliderProps = {
   beforeSrc: string;
@@ -25,8 +26,8 @@ type BeforeAfterSliderProps = {
 export function BeforeAfterSlider({
   beforeSrc,
   afterSrc,
-  beforeAlt = "Before photo",
-  afterAlt = "After preview",
+  beforeAlt = CLINIC_SLIDER.beforeLabel,
+  afterAlt = CLINIC_SLIDER.afterLabel,
   onDownloadAfter,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -91,7 +92,7 @@ export function BeforeAfterSlider({
           id={labelId}
           className="text-xs font-medium tracking-wide text-[var(--muted)] uppercase"
         >
-          Before / after compare
+          {CLINIC_SLIDER.caption}
         </span>
         {onDownloadAfter && (
           <button
@@ -99,7 +100,7 @@ export function BeforeAfterSlider({
             onClick={onDownloadAfter}
             className="text-xs text-[var(--muted)] hover:text-[var(--text)]"
           >
-            Download after
+            {CLINIC_SLIDER.download}
           </button>
         )}
       </figcaption>
@@ -170,17 +171,16 @@ export function BeforeAfterSlider({
 
         <div className="pointer-events-none absolute inset-x-0 top-3 flex justify-between px-3 text-[10px] font-semibold tracking-wider uppercase">
           <span className="rounded bg-black/50 px-2 py-0.5 text-white/90">
-            Before
+            {CLINIC_SLIDER.beforeLabel}
           </span>
           <span className="rounded bg-[var(--accent)]/90 px-2 py-0.5 text-[#0c0f14]">
-            After
+            {CLINIC_SLIDER.afterLabel}
           </span>
         </div>
       </div>
 
       <p className="border-t border-[var(--border)] px-4 py-2 text-xs text-[var(--muted)]">
-        Drag the handle or use arrow keys to compare. Shift + arrow moves in 10%
-        steps.
+        {CLINIC_SLIDER.help}
       </p>
     </figure>
   );

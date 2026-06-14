@@ -63,7 +63,7 @@ Status: `done` | `partial` | `pending`
 **Skill:** `frontend-ui-engineering` + `security-and-hardening`  
 **Legal:** [COMPLIANCE.md](./legal/COMPLIANCE.md) TL.1
 
-### T1.4.3 Clinic-oriented copy pass — `pending`
+### T1.4.3 Clinic-oriented copy pass — `done`
 
 ### T1.4.4 Loading UX — `pending`
 
