@@ -1,7 +1,7 @@
 # Spec: Hair Hack
 
-**Status:** v0.4 — dual tracks: ship 2D + legal; parallel 3D API spike  
-**Last updated:** 2026-06-13
+**Status:** v0.5 — ship 2D on OpenAI; Hairgen no-go; 3D deferred  
+**Last updated:** 2026-06-15
 
 ---
 
@@ -13,8 +13,8 @@
 | **Language** | **English only** |
 | **Team** | ~3 devs; repo **https://github.com/lamapony/hair-hack** |
 | **Compare UI** | **Before/after slider** |
-| **2D provider (now)** | **OpenAI `gpt-image-2`** — optimal public API for photoreal identity-preserving edit ([eval](./3D-API-EVAL.md)) |
-| **3D vision** | **Target** — true/quasi-3D via best hair-specific API after spike (Hairgen.ai first); not blocking 2D ship |
+| **2D provider (production)** | **OpenAI `gpt-image-2`** — sole provider for clinic demo ([eval](./3D-API-EVAL.md)) |
+| **3D vision** | **Deferred** — Hairgen.ai **no-go** (cost, fit); revisit Force HT or research APIs only if product requires rotatable 3D |
 | **Budget** | **Moderate** — `quality: medium` default; rate limits + daily cap |
 | **Legal** | **Separate track** — full compliance before paying clinics → [legal/COMPLIANCE.md](./legal/COMPLIANCE.md) |
 
@@ -23,17 +23,17 @@
 ## Parallel tracks
 
 ```
-Track SHIP (Phase 1)     Track 3D (spike)           Track LEGAL (parallel)
-─────────────────        ────────────────           ────────────────────
-gpt-image-2 + slider     Hairgen.ai API eval        COMPLIANCE.md
-tests + CI               Force HT / alternatives    consent UI + /privacy
-rate limits              provider adapter design    counsel sign-off gate
+Track SHIP (Phase 1)     Track 3D (deferred)        Track LEGAL (parallel)
+─────────────────        ─────────────────          ────────────────────
+gpt-image-2 + slider     Hairgen no-go (2026-06)    COMPLIANCE.md
+tests + CI               OpenAI prompts + quality   consent UI + /privacy
+rate limits              Force HT optional later    counsel sign-off gate
 ```
 
 ## Assumptions
 
-1. **2D provider:** OpenAI `gpt-image-2` via `images.edit` until 3D spike completes.
-2. **3D provider:** TBD after [3D-API-EVAL.md](./3D-API-EVAL.md); Hairgen.ai evaluated first.
+1. **2D provider:** OpenAI `gpt-image-2` via `images.edit` — production default; no alternate vendor planned for MVP.
+2. **3D provider:** Not integrating Hairgen.ai (team decision: cost vs value, mask complexity, 2.5D not rotatable 3D). Code spike remains in repo but unused.
 3. **Privacy (MVP):** Photos processed in-memory per request, not stored on our servers; sent to provider APIs per their policies.
 4. **No auth in MVP:** Clinic staff use shared demo URL; per-user accounts deferred.
 5. **Not medical software:** Illustrative sales tool, not clinical prediction or treatment planning.

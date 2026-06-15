@@ -4,6 +4,8 @@
 **Audience:** Clinic demo tool (staff-operated, not direct-to-consumer self-serve)  
 **Jurisdiction note:** Template covers EU (GDPR), UK, US (HIPAA-adjacent), and general medical-device marketing rules. **Not legal advice.**
 
+**Counsel package (TL.3):** [COUNSEL-PACKAGE.md](./COUNSEL-PACKAGE.md) — consolidated brief for legal review.
+
 ---
 
 ## Product classification
