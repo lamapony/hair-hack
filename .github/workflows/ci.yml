@@ -27,3 +27,12 @@ jobs:
         run: npm run build
         env:
           OPENAI_API_KEY: sk-test-placeholder-for-ci-build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E smoke (mocked API)
+        run: npm run test:e2e
+        env:
+          CI: true
+          OPENAI_API_KEY: sk-test-placeholder-for-ci-build

@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
-| VERIFY | `test-driven-development` | ✅ 66 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
+| VERIFY | `test-driven-development` | ✅ 66 unit + Playwright E2E smoke; [QA-PHASE1.md](./QA-PHASE1.md) |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** Optional polish (E2E, preview deploy) · prompt QA when photos available.
+**Current BUILD focus:** Preview deploy on Vercel · prompt QA when clinic photos available.
 
 ---
 
@@ -56,10 +56,11 @@
 | T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` on `main` |
 | T1.6.1 | Prompt tuning + `OPENAI_IMAGE_QUALITY` | ✅ | Default `medium`; validate on clinic photos |
 | T1.7.1 | Fixture QA rubric | ✅ | [QA-RUBRIC.md](./QA-RUBRIC.md) + `public/fixtures/` guide |
+| T1.8.1 | Playwright E2E smoke | ✅ | Mocked `/api/generate` in CI |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
-**Phase 1 exit:** all ✅ including T1.2.3; CI green on `main`.
+**Phase 1 exit:** all ✅ including T1.2.3 + T1.8.1; CI green on `main`.
 
 ---
 

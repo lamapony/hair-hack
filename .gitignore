@@ -7,3 +7,6 @@ node_modules
 coverage/
 *.tsbuildinfo
 public/fixtures/local/
+test-results/
+playwright-report/
+blob-report/

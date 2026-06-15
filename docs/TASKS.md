@@ -95,6 +95,14 @@ Status: `done` | `partial` | `pending`
 
 ---
 
+## Phase 1.8 — E2E smoke
+
+### T1.8.1 Playwright happy path (mocked API) — `done`
+
+**Shipped:** `tests/e2e/consultation.spec.ts` — upload → consent → generate with routed `/api/generate` mock; CI runs after build.
+
+---
+
 ## Track 3D
 
 ### T3D.1 Hairgen.ai spike — `done` (no-go)
