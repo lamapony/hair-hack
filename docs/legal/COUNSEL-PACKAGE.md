@@ -138,7 +138,7 @@ Record approvals in [COMPLIANCE.md](./COMPLIANCE.md) when complete.
 
 ## 10. Handoff checklist (product → counsel)
 
-Use this when engaging counsel. Attach or link the files in §2.
+Use this when engaging counsel. **Quick send:** [COUNSEL-SEND.md](./COUNSEL-SEND.md) (copy-paste email + GitHub links). Full index below.
 
 **Email subject:** `Hair Hack — clinic demo legal review (MVP, OpenAI-only)`
 

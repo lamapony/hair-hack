@@ -110,7 +110,7 @@ OpenAI is the production provider. Hairgen spike code remains in `src/lib/provid
 ### TL.3 Counsel review package — `partial`
 
 **Shipped:** [legal/COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) — briefing, doc index, counsel questions, sign-off gate, §10 handoff checklist.  
-**Remaining:** **Send package to counsel** (human) → approved Privacy/Terms + sign-off in COMPLIANCE.md.
+**Remaining:** **Send to counsel** — [COUNSEL-SEND.md](./legal/COUNSEL-SEND.md) (copy-paste email) → approved Privacy/Terms + sign-off in COMPLIANCE.md.
 
 ### TL.4 Deploy gate — `done`
 
