@@ -103,6 +103,16 @@ Status: `done` | `partial` | `pending`
 
 ---
 
+## Phase 1.9 — Deploy
+
+### T1.9.1 Vercel preview / demo URL — `done`
+
+**Shipped:** Project linked to Vercel; production alias [hair-hack.vercel.app](https://hair-hack.vercel.app). Runbook: [DEPLOY.md](./DEPLOY.md).
+
+**Note:** Legal deploy gate remains **off** (`LEGAL_PAGES_REQUIRED` unset). Enable only after counsel sign-off.
+
+---
+
 ## Track 3D
 
 ### T3D.1 Hairgen.ai spike — `done` (no-go)

@@ -41,7 +41,7 @@
 > - Written answers on data controller, GDPR lawful basis, HIPAA/BAA chain, OpenAI commercial use, advertising disclaimers, minors  
 > - Sign-off recorded in COMPLIANCE.md gate table when approved  
 >
-> **Optional 15-min demo:** clone https://github.com/lamapony/hair-hack — `npm install && npm run dev` → http://localhost:3000 (upload → four consent boxes → generate → slider). We can share a preview URL on request.
+> **Optional 15-min demo:** [https://hair-hack.vercel.app](https://hair-hack.vercel.app) or clone https://github.com/lamapony/hair-hack — `npm install && npm run dev` → http://localhost:3000 (upload → four consent boxes → generate → slider).
 >
 > Happy to walk through live or answer product questions.
 >

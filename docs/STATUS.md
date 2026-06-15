@@ -17,9 +17,9 @@
 | BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
 | VERIFY | `test-driven-development` | ✅ 66 unit + Playwright E2E smoke; [QA-PHASE1.md](./QA-PHASE1.md) |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
-| SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
+| SHIP | `shipping-and-launch` | 🔄 Preview live · prod gate before clinic pilot |
 
-**Current BUILD focus:** Preview deploy on Vercel · prompt QA when clinic photos available.
+**Current BUILD focus:** Share demo URL with counsel/clinic · prompt QA when photos available.
 
 ---
 
@@ -57,10 +57,11 @@
 | T1.6.1 | Prompt tuning + `OPENAI_IMAGE_QUALITY` | ✅ | Default `medium`; validate on clinic photos |
 | T1.7.1 | Fixture QA rubric | ✅ | [QA-RUBRIC.md](./QA-RUBRIC.md) + `public/fixtures/` guide |
 | T1.8.1 | Playwright E2E smoke | ✅ | Mocked `/api/generate` in CI |
+| T1.9.1 | Vercel deploy | ✅ | [hair-hack.vercel.app](https://hair-hack.vercel.app) · [DEPLOY.md](./DEPLOY.md) |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
-**Phase 1 exit:** all ✅ including T1.2.3 + T1.8.1; CI green on `main`.
+**Phase 1 exit:** all ✅ including T1.9.1; CI green on `main`.
 
 ---
 
@@ -114,9 +115,9 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **TL.3** — send email today: [COUNSEL-SEND.md](./legal/COUNSEL-SEND.md)
-2. **L1.5** — complete [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before production deploy
-3. **Clinic photo QA** — run [QA-RUBRIC.md](./QA-RUBRIC.md) on local fixtures (`public/fixtures/local/`)
+1. **Share demo** — [hair-hack.vercel.app](https://hair-hack.vercel.app) (counsel / clinic walkthrough)
+2. **TL.3** — counsel review when ready: [COUNSEL-SEND.md](./legal/COUNSEL-SEND.md)
+3. **L1.5** — [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before enabling `LEGAL_PAGES_REQUIRED`
 
 ---
 
