@@ -73,7 +73,17 @@ Status: `done` | `partial` | `pending`
 
 ## Phase 1.5 — CI
 
-### T1.5.1 GitHub Actions — `done` (awaiting push to `main`)
+### T1.5.1 GitHub Actions — `done`
+
+---
+
+## Phase 1.6 — OpenAI preview quality
+
+### T1.6.1 Prompt tuning + image quality env — `done`
+
+**Shipped:** Stronger per-goal prompts in `src/lib/prompts.ts`; `OPENAI_IMAGE_QUALITY` (default `medium`) in OpenAI provider.
+
+**Remaining:** Visual QA on real clinic photos (hairline + full goals).
 
 ---
 

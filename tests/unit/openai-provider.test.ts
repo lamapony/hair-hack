@@ -24,6 +24,39 @@ describe("createOpenAIProvider", () => {
 
     expect(result.image).toBe("data:image/png;base64,abc123");
     expect(result.goal).toBe("density");
-    expect(client.images.edit).toHaveBeenCalledOnce();
+    expect(client.images.edit).toHaveBeenCalledWith(
+      expect.objectContaining({
+        quality: "medium",
+        n: 1,
+        size: "auto",
+      }),
+    );
+  });
+
+  it("uses OPENAI_IMAGE_QUALITY when set", async () => {
+    process.env.OPENAI_IMAGE_QUALITY = "high";
+    const client = {
+      images: {
+        edit: vi.fn().mockResolvedValue({
+          data: [{ b64_json: "abc123" }],
+        }),
+      },
+    };
+
+    const provider = createOpenAIProvider({
+      apiKey: "test-key",
+      client: client as never,
+    });
+
+    await provider.generate({
+      buffer: Buffer.from("fake"),
+      mime: "image/png",
+      goal: "hairline",
+    });
+
+    expect(client.images.edit).toHaveBeenCalledWith(
+      expect.objectContaining({ quality: "high" }),
+    );
+    delete process.env.OPENAI_IMAGE_QUALITY;
   });
 });

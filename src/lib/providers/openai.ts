@@ -1,6 +1,7 @@
 import OpenAI, { toFile } from "openai";
 import { buildPrompt } from "@/lib/prompts";
 import { extensionForMime } from "@/lib/image";
+import { resolveOpenAIImageQuality } from "@/lib/openai-image-config";
 import type { AllowedImageMime } from "@/lib/constants";
 import type {
   ImageProvider,
@@ -32,6 +33,7 @@ export function createOpenAIProvider(
         model,
         image: file,
         prompt: buildPrompt(input.goal),
+        quality: resolveOpenAIImageQuality(),
         n: 1,
         size: "auto",
       });
