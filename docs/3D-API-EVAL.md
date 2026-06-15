@@ -2,7 +2,17 @@
 
 **Goal:** True or quasi-3D hair preview for in-clinic demos, using the best available API (not DIY research models unless no vendor fits).
 
-**Status:** Research — parallel to Phase 1 2D MVP
+**Status:** Research — **Hairgen no-go** (2026-06-15); production stays on OpenAI 2D
+
+---
+
+## Decision log
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| 2026-06-15 | **No-go on Hairgen.ai** | Per-render cost vs `gpt-image-2`; requires scalp mask pipeline; 2.5D only (no rotation); team expects better results from OpenAI + prompt tuning. Live trial skipped. |
+| 2026-06-15 | **Production provider = OpenAI only** | `IMAGE_PROVIDER=openai` (default). Hairgen adapter in repo is archived spike code, not supported for clinics. |
+| — | **3D track deferred** | Revisit only if clinic product needs true 3D (e.g. Force HT partnership) — not blocking Phase 1 ship. |
 
 ---
 
@@ -19,9 +29,9 @@
 
 **Conclusion:** There is no single public API today that equals Force HT's full 3D consultation **and** is as easy as OpenAI. Strategy:
 
-1. **Now:** Ship 2D with `gpt-image-2` + slider (fast, team can iterate).
-2. **Spike (T3D.1):** Hairgen.ai trial — closest **API-first** hair-transplant renderer.
-3. **Decision (T3D.2):** If Hairgen quality passes clinic bar → dual provider or switch; else evaluate Force HT partnership or wait for HairPort maturity.
+1. **Now:** Ship 2D with `gpt-image-2` + slider — **this is the product path.**
+2. ~~**Spike (T3D.1):** Hairgen.ai trial~~ → **No-go** (see decision log).
+3. **Later (optional):** Force HT partnership or research (HairPort) if true 3D becomes a requirement — not MVP.
 
 ---
 
@@ -65,55 +75,27 @@ renderSettings={"density": 100, "male": true, "hairstyle": "automatic", ...}
 
 **Tasks:** See `docs/TASKS.md` → Track 3D
 
-### Spike implementation (T3D.1)
+### Spike implementation (T3D.1) — archived, no-go
 
-Branch: `spike/hairgen`
+Adapter merged in PR #9 for evaluation only. **Do not use in production.** No `HAIRGEN_API_KEY` required or planned.
 
 | Piece | Status | Notes |
 |-------|--------|-------|
-| `createHairgenProvider()` | ✅ | `POST /v1/render` + fetch result URL → data URL |
-| Goal → `renderSettings` | ✅ | `hairgen-settings.ts` — hairline uses density 75 |
-| Scalp mask | ⚠️ Placeholder | Elliptical mask via `hairgen-mask.ts` — **not** real segmentation |
-| Env | ✅ | `IMAGE_PROVIDER=hairgen`, `HAIRGEN_API_KEY` |
-| Live trial | ○ | Needs API key from Hairgen sales |
+| `createHairgenProvider()` | Archived | Not supported |
+| Live trial | **Skipped** | No-go without trial — desk + architecture review sufficient |
+| **Outcome** | **No-go** | Stay on OpenAI; improve prompts and clinic QA instead |
 
-**How to run spike locally:**
+~~**How to run spike locally:**~~ Not applicable — provider deprecated.
 
-```bash
-# .env.local
-IMAGE_PROVIDER=hairgen
-HAIRGEN_API_KEY=<trial key>
-npm run dev
-```
-
-**Manual evaluation checklist** (score 1–5 each; fill after live trial):
-
-| Criterion | Score | Notes |
-|-----------|-------|-------|
-| Identity preservation | _ | |
-| Natural hairline | _ | |
-| Clinic "wow" on tablet | _ | |
-| API latency & reliability | _ | |
-| Cost per render vs gpt-image-2 | _ | |
-
-**Known spike limitations:**
-
-1. **Mask** — Hairgen requires `photo` + `mask`. Spike uses a fixed 64×64 elliptical mask; production needs segmentation matched to photo dimensions.
-2. **Goal fidelity** — Hairgen exposes `density` / `hairstyle`, not exact Hair Hack goals; mapping is approximate.
-3. **No 3D rotation** — Hairgen is 2.5D render, not rotatable mesh.
-
-**Go/no-go gate:** Average weighted score ≥ 3.5 on clinic fixture photos → proceed T3D.2 dual-provider; else stay on OpenAI.
+~~**Go/no-go gate:**~~ **Closed: no-go** — remain on `gpt-image-2`.
 
 ---
 
 ## Architecture options (post-spike)
 
-### Option A — Dual provider (recommended if Hairgen wins)
+### Option A — Dual provider ~~(recommended if Hairgen wins)~~ **Rejected**
 
-```
-Client → /api/generate?provider=openai|hairgen
-       → adapter pattern in src/lib/providers/
-```
+Hairgen no-go. Single provider: OpenAI.
 
 ### Option B — 3D-only vendor (Force HT)
 

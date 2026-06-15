@@ -79,14 +79,15 @@ Status: `done` | `partial` | `pending`
 
 ## Track 3D
 
-### T3D.1 Hairgen.ai spike — `partial`
+### T3D.1 Hairgen.ai spike — `done` (no-go)
 
-**Shipped:** `createHairgenProvider`, placeholder scalp mask, goal→settings mapping, env docs.  
-**Remaining:** Live API trial + go/no-go scores in [3D-API-EVAL.md](./3D-API-EVAL.md).
+**Outcome (2026-06-15):** Do not integrate Hairgen — cost, mask complexity, limited 2.5D value vs OpenAI. No live trial. See [3D-API-EVAL.md](./3D-API-EVAL.md) decision log.
 
-### T3D.2 Provider adapter design — `partial` (OpenAI + Hairgen spike adapter)
+### T3D.2 Provider adapter design — `done`
 
-### T3D.3 Force HT outreach — `pending`
+OpenAI is the production provider. Hairgen spike code remains in `src/lib/providers/hairgen*.ts` but is **not supported** for clinics.
+
+### T3D.3 Force HT outreach — `pending` (optional)
 
 ---
 
@@ -96,7 +97,10 @@ Status: `done` | `partial` | `pending`
 
 ### TL.2 Policy pages — `done`
 
-### TL.3 Counsel review package — `pending`
+### TL.3 Counsel review package — `partial`
+
+**Shipped:** [legal/COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) — briefing, doc index, counsel questions, sign-off gate, §10 handoff checklist.  
+**Remaining:** **Send package to counsel** (human) → approved Privacy/Terms + sign-off in COMPLIANCE.md.
 
 ### TL.4 Deploy gate — `pending`
 
@@ -110,7 +114,7 @@ Status: `done` | `partial` | `pending`
 4. T1.4.3 — clinic copy
 5. T1.3.1 — rate limits
 6. T1.1.4 — route tests
-7. T3D.1 — parallel on `spike/hairgen`
+7. ~~T3D.1 Hairgen~~ — closed no-go; focus on OpenAI quality
 
 ---
 

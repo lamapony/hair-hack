@@ -11,15 +11,27 @@
 
 | Phase | Skill | Status |
 |-------|-------|--------|
-| DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.4 locked |
+| DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.5 — Hairgen no-go |
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
-| BUILD | `incremental-implementation` | ✅ Phase 1 complete; T3D.1 spike in progress |
-| VERIFY | `test-driven-development` | 🔄 50+ unit tests; E2E optional |
+| BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
+| VERIFY | `test-driven-development` | ✅ 50 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** T3D.1 Hairgen spike — live trial with API key.
+**Current BUILD focus:** OpenAI quality + Phase 1 tablet QA · counsel handoff (TL.3).
+
+---
+
+## Track 3D — deferred (Hairgen no-go)
+
+| ID | Task | Status | Notes |
+|----|------|--------|-------|
+| T3D.1 | Hairgen.ai spike | ✅ no-go | Decision 2026-06-15: skip live trial; stay on OpenAI |
+| T3D.2 | Provider adapter | ✅ | OpenAI production; Hairgen code archived in repo |
+| T3D.3 | Force HT outreach | ○ | Optional — only if true 3D required later |
+
+**Decision:** No `HAIRGEN_API_KEY`. Improve `gpt-image-2` prompts and clinic QA instead.
 
 ---
 
@@ -49,17 +61,11 @@
 
 ---
 
-## Track 3D (parallel spike)
+## Phase 1 exit QA
 
-| ID | Task | Status | Notes |
-|----|------|--------|-------|
-| T3D.1 | Hairgen.ai spike | 🔄 | Adapter + placeholder mask; needs live API trial |
-| T3D.2 | Provider adapter | 🔄 | OpenAI done; Hairgen spike adapter |
-| T3D.3 | Force HT outreach | ○ | Optional |
+See [QA-PHASE1.md](./QA-PHASE1.md). Automated + browser QA ✅; optional iPad pass with real clinic photos (hairline/full goals).
 
-**Decision gate:** T3D.1 go/no-go → either integrate Hairgen or stay on `gpt-image-2` until enterprise 3D.
-
----
+## Track SHIP (Phase 1 — clinic demo)
 
 ## Track LEGAL (parallel — blocks paid clinics)
 
@@ -68,7 +74,7 @@
 | — | Risk register | ✅ | [legal/COMPLIANCE.md](./legal/COMPLIANCE.md) |
 | TL.1 | Consent UI (4 boxes) | ✅ | L-T1 + L-T2 partial (banner/footer); maps to T1.4.2 |
 | TL.2 | `/privacy` + `/terms` | ✅ | Draft placeholders linked from footer |
-| TL.3 | Counsel review package | ○ | Needs lawyer |
+| TL.3 | Counsel review package | 🔄 | Package ready — **send to counsel** ([§10 handoff](./legal/COUNSEL-PACKAGE.md#10-handoff-checklist-product--counsel)) |
 | TL.4 | Deploy gate | ○ | Env check |
 
 **Hard gate:** no paying clinic pilot until TL.2–TL.3 + counsel sign-off in COMPLIANCE.md.
@@ -105,9 +111,9 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **T3D.1** — live Hairgen trial with `HAIRGEN_API_KEY` (score checklist in [3D-API-EVAL.md](./3D-API-EVAL.md))
-2. **Phase 1 exit** — manual QA on clinic tablet
-3. **TL.3** — counsel review package
+1. **TL.3** — send [COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) to counsel using §10 handoff (blocks paid pilot)
+2. **Quality** — tune OpenAI prompts / `OPENAI_IMAGE_QUALITY` on real clinic photos (hairline + full goals)
+3. **Optional** — iPad smoke test with staff on real prospect photos
 
 ---
 
