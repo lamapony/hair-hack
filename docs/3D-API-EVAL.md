@@ -65,6 +65,45 @@ renderSettings={"density": 100, "male": true, "hairstyle": "automatic", ...}
 
 **Tasks:** See `docs/TASKS.md` → Track 3D
 
+### Spike implementation (T3D.1)
+
+Branch: `spike/hairgen`
+
+| Piece | Status | Notes |
+|-------|--------|-------|
+| `createHairgenProvider()` | ✅ | `POST /v1/render` + fetch result URL → data URL |
+| Goal → `renderSettings` | ✅ | `hairgen-settings.ts` — hairline uses density 75 |
+| Scalp mask | ⚠️ Placeholder | Elliptical mask via `hairgen-mask.ts` — **not** real segmentation |
+| Env | ✅ | `IMAGE_PROVIDER=hairgen`, `HAIRGEN_API_KEY` |
+| Live trial | ○ | Needs API key from Hairgen sales |
+
+**How to run spike locally:**
+
+```bash
+# .env.local
+IMAGE_PROVIDER=hairgen
+HAIRGEN_API_KEY=<trial key>
+npm run dev
+```
+
+**Manual evaluation checklist** (score 1–5 each; fill after live trial):
+
+| Criterion | Score | Notes |
+|-----------|-------|-------|
+| Identity preservation | _ | |
+| Natural hairline | _ | |
+| Clinic "wow" on tablet | _ | |
+| API latency & reliability | _ | |
+| Cost per render vs gpt-image-2 | _ | |
+
+**Known spike limitations:**
+
+1. **Mask** — Hairgen requires `photo` + `mask`. Spike uses a fixed 64×64 elliptical mask; production needs segmentation matched to photo dimensions.
+2. **Goal fidelity** — Hairgen exposes `density` / `hairstyle`, not exact Hair Hack goals; mapping is approximate.
+3. **No 3D rotation** — Hairgen is 2.5D render, not rotatable mesh.
+
+**Go/no-go gate:** Average weighted score ≥ 3.5 on clinic fixture photos → proceed T3D.2 dual-provider; else stay on OpenAI.
+
 ---
 
 ## Architecture options (post-spike)

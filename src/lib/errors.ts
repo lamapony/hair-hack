@@ -33,10 +33,21 @@ export function mapGenerationError(err: unknown): ErrorMapping {
     };
   }
 
-  if (lower.includes("invalid_api_key") || lower.includes("incorrect api key")) {
+  if (
+    lower.includes("invalid_api_key") ||
+    lower.includes("incorrect api key") ||
+    lower.includes("hairgen api key rejected")
+  ) {
     return {
       message: "Image service is not configured. Contact your administrator.",
       status: 500,
+    };
+  }
+
+  if (lower.includes("hairgen render failed")) {
+    return {
+      message: "Preview generation failed. Please try again.",
+      status: 502,
     };
   }
 
