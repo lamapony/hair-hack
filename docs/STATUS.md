@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
-| VERIFY | `test-driven-development` | ✅ 50 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
+| VERIFY | `test-driven-development` | ✅ 58 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** OpenAI quality + Phase 1 tablet QA · counsel handoff (TL.3).
+**Current BUILD focus:** TL.3 counsel send (human) · OpenAI engineering checklist · prompt quality on clinic photos.
 
 ---
 
@@ -75,7 +75,7 @@ See [QA-PHASE1.md](./QA-PHASE1.md). Automated + browser QA ✅; optional iPad pa
 | TL.1 | Consent UI (4 boxes) | ✅ | L-T1 + L-T2 partial (banner/footer); maps to T1.4.2 |
 | TL.2 | `/privacy` + `/terms` | ✅ | Draft placeholders linked from footer |
 | TL.3 | Counsel review package | 🔄 | Package ready — **send to counsel** ([§10 handoff](./legal/COUNSEL-PACKAGE.md#10-handoff-checklist-product--counsel)) |
-| TL.4 | Deploy gate | ○ | Env check |
+| TL.4 | Deploy gate | ✅ | `LEGAL_PAGES_REQUIRED` + `/api/health`; [OpenAI checklist](./legal/OPENAI-ENGINEERING-CHECKLIST.md) |
 
 **Hard gate:** no paying clinic pilot until TL.2–TL.3 + counsel sign-off in COMPLIANCE.md.
 
@@ -111,9 +111,9 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **TL.3** — send [COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) to counsel using §10 handoff (blocks paid pilot)
-2. **Quality** — tune OpenAI prompts / `OPENAI_IMAGE_QUALITY` on real clinic photos (hairline + full goals)
-3. **Optional** — iPad smoke test with staff on real prospect photos
+1. **TL.3** — send [COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) to counsel (§10 handoff)
+2. **L1.5** — complete [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before production deploy
+3. **Quality** — tune prompts on real clinic photos (hairline + full goals)
 
 ---
 

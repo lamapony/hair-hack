@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mapGenerationError } from "@/lib/errors";
+import {
+  isGenerateBlockedByLegalGate,
+  LEGAL_GATE_BLOCKED_MESSAGE,
+} from "@/lib/legal-gate";
 import { getImageProvider } from "@/lib/providers";
 import {
   checkRateLimit,
@@ -14,6 +18,13 @@ export const runtime = "nodejs";
 export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
+  if (isGenerateBlockedByLegalGate()) {
+    return NextResponse.json<ErrorResponse>(
+      { error: LEGAL_GATE_BLOCKED_MESSAGE },
+      { status: 503 },
+    );
+  }
+
   const providerId = process.env.IMAGE_PROVIDER?.toLowerCase() ?? "openai";
   if (providerId === "hairgen") {
     if (!process.env.HAIRGEN_API_KEY) {
