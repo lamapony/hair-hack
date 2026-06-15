@@ -102,9 +102,17 @@ OpenAI is the production provider. Hairgen spike code remains in `src/lib/provid
 **Shipped:** [legal/COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) — briefing, doc index, counsel questions, sign-off gate, §10 handoff checklist.  
 **Remaining:** **Send package to counsel** (human) → approved Privacy/Terms + sign-off in COMPLIANCE.md.
 
-### TL.4 Deploy gate — `pending`
+### TL.4 Deploy gate — `done`
 
----
+**Shipped:** `LEGAL_PAGES_REQUIRED` + `COUNSEL_LEGAL_APPROVED` block `/api/generate` on Vercel production; `GET /api/health` for canary; [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md).
+
+**Acceptance:**
+- [x] Production gate off by default (dev/preview unchanged)
+- [x] 503 user-safe message when gated
+- [x] Unit tests for gate + health route
+- [x] Env documented in `.env.example`
+
+**Before prod:** Complete OpenAI checklist; set `COUNSEL_LEGAL_APPROVED=true` only after counsel sign-off.
 
 ## Suggested order (agent-skills BUILD)
 

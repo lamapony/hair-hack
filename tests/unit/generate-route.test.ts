@@ -46,6 +46,9 @@ describe("POST /api/generate", () => {
       RATE_LIMIT_DISABLED: "true",
     };
     delete process.env.DAILY_GENERATION_CAP;
+    delete process.env.LEGAL_PAGES_REQUIRED;
+    delete process.env.COUNSEL_LEGAL_APPROVED;
+    delete process.env.VERCEL_ENV;
 
     vi.mocked(getImageProvider).mockReturnValue({
       id: "openai",
@@ -142,6 +145,20 @@ describe("POST /api/generate", () => {
 
     expect(res.status).toBe(429);
     expect(data.error).toContain("Too many requests");
+  });
+
+  it("returns 503 when production legal gate is active", async () => {
+    process.env.LEGAL_PAGES_REQUIRED = "true";
+    process.env.VERCEL_ENV = "production";
+
+    const res = await POST(
+      makeRequest({ image: TINY_PNG, goal: "full", consent: FULL_CONSENT }),
+    );
+    const data = await res.json();
+
+    expect(res.status).toBe(503);
+    expect(data.error).toContain("not approved for production");
+    expect(mockGenerate).not.toHaveBeenCalled();
   });
 
   it("returns 500 when HAIRGEN_API_KEY is missing for hairgen provider", async () => {

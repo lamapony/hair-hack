@@ -106,7 +106,7 @@ Please advise in writing on:
 | Privacy Policy counsel-approved | ⏳ |
 | Clinic ToS counsel-approved | ⏳ |
 | Consent UI matches L-D4 script | ⏳ Product ready; script pending |
-| OpenAI DPA / ZDR settings verified | ⏳ Engineering |
+| OpenAI DPA / ZDR settings verified | ⏳ Engineering — [OPENAI-ENGINEERING-CHECKLIST.md](./OPENAI-ENGINEERING-CHECKLIST.md) |
 | DPIA (EU) | ⏳ |
 | Insurance / liability with clinic partner | ⏳ Business |
 

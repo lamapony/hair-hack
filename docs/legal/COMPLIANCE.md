@@ -109,7 +109,7 @@ Staff must check all before `Generate`:
 | L-T3 | `/privacy` and `/terms` placeholder pages with counsel-approved text | L-D1, L-D2 | ✅ Draft placeholders (counsel review pending) |
 | L-T4 | Age gate: confirm 18+ in consent (no DOB collection in MVP) | R6 |
 | L-T5 | Audit log: timestamp, goal, no image (Phase 2) | R7, R11 |
-| L-T6 | `LEGAL_REVIEW_REQUIRED=true` env blocks deploy without policy URLs | CI guard |
+| L-T6 | `LEGAL_PAGES_REQUIRED` env blocks production generate without `COUNSEL_LEGAL_APPROVED` | CI guard | ✅ Shipped (TL.4) |
 | L-T7 | Export **data processing summary** PDF for clinics | L-D3 |
 
 ---
