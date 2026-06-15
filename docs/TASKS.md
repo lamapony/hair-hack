@@ -40,7 +40,9 @@ Status: `done` | `partial` | `pending`
 
 ### T1.2.2 User-safe error mapping — `done`
 
-### T1.2.3 Client image resize (optional) — `pending`
+### T1.2.3 Client image resize — `done`
+
+**Shipped:** `src/lib/client-image.ts` — downscale to 2048px max edge + re-encode before upload; accepts inputs up to 25 MB.
 
 ---
 

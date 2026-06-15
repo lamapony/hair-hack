@@ -22,6 +22,7 @@ import {
   CLINIC_UPLOAD,
   CLINIC_WORKFLOW_STEPS,
 } from "@/lib/clinic-copy";
+import { MAX_INPUT_FILE_BYTES, prepareImageDataUrl } from "@/lib/client-image";
 import {
   GOAL_HINTS,
   GOAL_LABELS,
@@ -64,23 +65,25 @@ export function HairPreviewApp() {
   const canGenerate =
     Boolean(original) && consentComplete && status !== "loading";
 
-  const readFile = useCallback((file: File) => {
+  const readFile = useCallback(async (file: File) => {
     if (!file.type.startsWith("image/")) {
       setError("Please select an image file");
       return;
     }
-    if (file.size > 8 * 1024 * 1024) {
-      setError("File must be 8 MB or smaller");
+    if (file.size > MAX_INPUT_FILE_BYTES) {
+      setError("File is too large. Please use a photo under 25 MB.");
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      setOriginal(reader.result as string);
+    try {
+      const dataUrl = await prepareImageDataUrl(file);
+      setOriginal(dataUrl);
       resetResult();
       resetConsent();
-    };
-    reader.readAsDataURL(file);
+      setError(null);
+    } catch {
+      setError("Could not process this image. Try a smaller or different file.");
+    }
   }, []);
 
   const onDrop = (e: React.DragEvent) => {

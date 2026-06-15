@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
-| VERIFY | `test-driven-development` | ✅ 63 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
+| VERIFY | `test-driven-development` | ✅ 66 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** TL.3 counsel send (human) · OpenAI engineering checklist · clinic photo QA for prompts.
+**Current BUILD focus:** Optional polish (E2E, preview deploy) · prompt QA when photos available.
 
 ---
 
@@ -46,7 +46,7 @@
 | T1.1.4 | Route tests (mocked) | ✅ | 7 tests on `POST /api/generate` |
 | T1.2.1 | `validate.ts` | ✅ | 4 tests |
 | T1.2.2 | Error mapping | ✅ | `errors.ts` + 4 tests |
-| T1.2.3 | Client resize | ○ | Optional |
+| T1.2.3 | Client resize | ✅ | Max 2048px edge; inputs up to 25 MB |
 | T1.3.1 | Rate limiting | ✅ | IP hourly + optional daily cap on `/api/generate` |
 | T1.3.2 | Env docs | ✅ | `.env.example` documents rate limit vars |
 | T1.4.1 | Slider compare | ✅ | Drag handle + keyboard; replaces side-by-side |
@@ -59,7 +59,7 @@
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
-**Phase 1 exit:** all ✅ except optional T1.2.3; CI green on `main`; manual QA on tablet.
+**Phase 1 exit:** all ✅ including T1.2.3; CI green on `main`.
 
 ---
 
