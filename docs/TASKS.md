@@ -109,6 +109,10 @@ Status: `done` | `partial` | `pending`
 
 **Shipped:** Project linked to Vercel; production alias [hair-hack.vercel.app](https://hair-hack.vercel.app). Runbook: [DEPLOY.md](./DEPLOY.md).
 
+### T1.9.2 Production smoke QA — `done`
+
+**Shipped:** [QA-PRODUCTION.md](./QA-PRODUCTION.md) + `scripts/smoke-production.sh` (health, legal pages; optional `--generate`).
+
 **Note:** Legal deploy gate remains **off** (`LEGAL_PAGES_REQUIRED` unset). Enable only after counsel sign-off.
 
 ---
