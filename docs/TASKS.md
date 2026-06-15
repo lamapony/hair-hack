@@ -79,9 +79,12 @@ Status: `done` | `partial` | `pending`
 
 ## Track 3D
 
-### T3D.1 Hairgen.ai spike — `pending`
+### T3D.1 Hairgen.ai spike — `partial`
 
-### T3D.2 Provider adapter design — `partial` (OpenAI done; Hairgen stub)
+**Shipped:** `createHairgenProvider`, placeholder scalp mask, goal→settings mapping, env docs.  
+**Remaining:** Live API trial + go/no-go scores in [3D-API-EVAL.md](./3D-API-EVAL.md).
+
+### T3D.2 Provider adapter design — `partial` (OpenAI + Hairgen spike adapter)
 
 ### T3D.3 Force HT outreach — `pending`
 

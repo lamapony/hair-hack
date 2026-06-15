@@ -3,7 +3,7 @@
 **Living dashboard.** Update when a task ships or a track changes.  
 **Workflow:** [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) — DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP
 
-**Last updated:** 2026-06-13
+**Last updated:** 2026-06-15
 
 ---
 
@@ -14,12 +14,12 @@
 | DEFINE | `spec-driven-development` | ✅ [SPEC.md](./SPEC.md) v0.4 locked |
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
-| BUILD | `incremental-implementation` | ✅ Phase 1 complete (optional T1.2.3) |
-| VERIFY | `test-driven-development` | 🔄 42 unit tests; E2E optional |
+| BUILD | `incremental-implementation` | ✅ Phase 1 complete; T3D.1 spike in progress |
+| VERIFY | `test-driven-development` | 🔄 50+ unit tests; E2E optional |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** Phase 1 exit QA → T3D.1 spike (parallel).
+**Current BUILD focus:** T3D.1 Hairgen spike — live trial with API key.
 
 ---
 
@@ -53,8 +53,8 @@
 
 | ID | Task | Status | Notes |
 |----|------|--------|-------|
-| T3D.1 | Hairgen.ai spike | ○ | [3D-API-EVAL.md](./3D-API-EVAL.md) |
-| T3D.2 | Provider adapter | 🔄 | `ImageProvider` + OpenAI done; Hairgen stub |
+| T3D.1 | Hairgen.ai spike | 🔄 | Adapter + placeholder mask; needs live API trial |
+| T3D.2 | Provider adapter | 🔄 | OpenAI done; Hairgen spike adapter |
 | T3D.3 | Force HT outreach | ○ | Optional |
 
 **Decision gate:** T3D.1 go/no-go → either integrate Hairgen or stay on `gpt-image-2` until enterprise 3D.
@@ -105,8 +105,8 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **Phase 1 exit** — manual QA on clinic tablet
-2. **T3D.1** — Hairgen spike (parallel, `spike/hairgen`)
+1. **T3D.1** — live Hairgen trial with `HAIRGEN_API_KEY` (score checklist in [3D-API-EVAL.md](./3D-API-EVAL.md))
+2. **Phase 1 exit** — manual QA on clinic tablet
 3. **TL.3** — counsel review package
 
 ---

@@ -144,19 +144,18 @@ describe("POST /api/generate", () => {
     expect(data.error).toContain("Too many requests");
   });
 
-  it("returns 501 when Hairgen provider is selected", async () => {
+  it("returns 500 when HAIRGEN_API_KEY is missing for hairgen provider", async () => {
     process.env.IMAGE_PROVIDER = "hairgen";
+    delete process.env.HAIRGEN_API_KEY;
     delete process.env.OPENAI_API_KEY;
-    vi.mocked(getImageProvider).mockImplementation(() => {
-      throw new Error("Hairgen provider is not implemented yet. Set IMAGE_PROVIDER=openai.");
-    });
 
     const res = await POST(
       makeRequest({ image: TINY_PNG, goal: "full", consent: FULL_CONSENT }),
     );
     const data = await res.json();
 
-    expect(res.status).toBe(501);
-    expect(data.error).toContain("Hairgen");
+    expect(res.status).toBe(500);
+    expect(data.error).toContain("HAIRGEN_API_KEY");
+    expect(mockGenerate).not.toHaveBeenCalled();
   });
 });

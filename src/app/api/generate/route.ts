@@ -14,7 +14,15 @@ export const runtime = "nodejs";
 export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
-  if (!process.env.OPENAI_API_KEY && process.env.IMAGE_PROVIDER !== "hairgen") {
+  const providerId = process.env.IMAGE_PROVIDER?.toLowerCase() ?? "openai";
+  if (providerId === "hairgen") {
+    if (!process.env.HAIRGEN_API_KEY) {
+      return NextResponse.json<ErrorResponse>(
+        { error: "HAIRGEN_API_KEY is not set. Add your key to .env.local" },
+        { status: 500 },
+      );
+    }
+  } else if (!process.env.OPENAI_API_KEY) {
     return NextResponse.json<ErrorResponse>(
       { error: "OPENAI_API_KEY is not set. Add your key to .env.local" },
       { status: 500 },
@@ -64,8 +72,11 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
-    if (err instanceof Error && err.message.includes("Hairgen provider")) {
-      return NextResponse.json<ErrorResponse>({ error: err.message }, { status: 501 });
+    if (err instanceof Error && err.message.includes("HAIRGEN_API_KEY")) {
+      return NextResponse.json<ErrorResponse>(
+        { error: "HAIRGEN_API_KEY is not set. Add your key to .env.local" },
+        { status: 500 },
+      );
     }
 
     const mapped = mapGenerationError(err);
