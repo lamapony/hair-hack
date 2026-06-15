@@ -39,6 +39,15 @@ After changing env vars on Vercel, redeploy:
 npx vercel redeploy hair-hack.vercel.app --non-interactive
 ```
 
+## Smoke test
+
+```bash
+./scripts/smoke-production.sh           # health + legal pages
+./scripts/smoke-production.sh --generate  # + one OpenAI call (~60s)
+```
+
+See [QA-PRODUCTION.md](./QA-PRODUCTION.md).
+
 ## Before paid clinic pilot
 
 1. Complete [legal/OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md)

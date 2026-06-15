@@ -19,7 +19,7 @@
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | 🔄 Preview live · prod gate before clinic pilot |
 
-**Current BUILD focus:** Share demo URL with counsel/clinic · prompt QA when photos available.
+**Current BUILD focus:** Counsel/clinic walkthrough on live URL · prompt QA when photos available.
 
 ---
 
@@ -58,6 +58,7 @@
 | T1.7.1 | Fixture QA rubric | ✅ | [QA-RUBRIC.md](./QA-RUBRIC.md) + `public/fixtures/` guide |
 | T1.8.1 | Playwright E2E smoke | ✅ | Mocked `/api/generate` in CI |
 | T1.9.1 | Vercel deploy | ✅ | [hair-hack.vercel.app](https://hair-hack.vercel.app) · [DEPLOY.md](./DEPLOY.md) |
+| T1.9.2 | Production smoke QA | ✅ | [QA-PRODUCTION.md](./QA-PRODUCTION.md) · `scripts/smoke-production.sh` |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
@@ -115,7 +116,7 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 ## Next up (recommended order)
 
-1. **Share demo** — [hair-hack.vercel.app](https://hair-hack.vercel.app) (counsel / clinic walkthrough)
+1. **Share demo** — [hair-hack.vercel.app](https://hair-hack.vercel.app) ([QA-PRODUCTION.md](./QA-PRODUCTION.md) ✅)
 2. **TL.3** — counsel review when ready: [COUNSEL-SEND.md](./legal/COUNSEL-SEND.md)
 3. **L1.5** — [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before enabling `LEGAL_PAGES_REQUIRED`
 
