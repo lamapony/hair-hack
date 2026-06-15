@@ -47,7 +47,7 @@ export const CLINIC_GOALS: Record<
 export const CLINIC_UPLOAD = {
   addTitle: "Add prospect photo",
   replaceTitle: "Replace prospect photo",
-  hint: "Front-facing, good lighting · JPEG, PNG, WebP · up to 8 MB",
+  hint: "Front-facing, good lighting · JPEG, PNG, WebP · up to 25 MB (auto-resized)",
 } as const;
 
 export const CLINIC_ACTIONS = {
