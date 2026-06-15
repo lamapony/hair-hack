@@ -15,11 +15,11 @@
 | PLAN | `planning-and-task-breakdown` | ✅ [PLAN.md](./PLAN.md) |
 | TASKS | `planning-and-task-breakdown` | ✅ [TASKS.md](./TASKS.md) — see table below |
 | BUILD | `incremental-implementation` | ✅ Phase 1 complete; 3D track deferred |
-| VERIFY | `test-driven-development` | ✅ 58 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
+| VERIFY | `test-driven-development` | ✅ 63 tests; [QA-PHASE1.md](./QA-PHASE1.md) browser QA pass |
 | REVIEW | `code-review-and-quality` | ⏳ before each PR |
 | SHIP | `shipping-and-launch` | ⏳ after Phase 1 + legal gate |
 
-**Current BUILD focus:** TL.3 counsel send (human) · OpenAI engineering checklist · prompt quality on clinic photos.
+**Current BUILD focus:** TL.3 counsel send (human) · OpenAI engineering checklist · clinic photo QA for prompts.
 
 ---
 
@@ -54,6 +54,7 @@
 | T1.4.3 | Clinic copy | ✅ | `clinic-copy.ts` + consultation workflow |
 | T1.4.4 | Loading + cancel | ✅ | Spinner + AbortController cancel |
 | T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` on `main` |
+| T1.6.1 | Prompt tuning + `OPENAI_IMAGE_QUALITY` | ✅ | Default `medium`; validate on clinic photos |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
@@ -113,7 +114,7 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 1. **TL.3** — send [COUNSEL-PACKAGE.md](./legal/COUNSEL-PACKAGE.md) to counsel (§10 handoff)
 2. **L1.5** — complete [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before production deploy
-3. **Quality** — tune prompts on real clinic photos (hairline + full goals)
+3. **Clinic photo QA** — validate hairline/full prompts on real prospect photos; iterate `src/lib/prompts.ts`
 
 ---
 

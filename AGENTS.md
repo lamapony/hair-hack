@@ -72,6 +72,7 @@ tests/unit/               → Vitest (run: npm test)
 |----------|----------|-------------|
 | `OPENAI_API_KEY` | yes | OpenAI API key |
 | `OPENAI_IMAGE_MODEL` | no | Default `gpt-image-2` |
+| `OPENAI_IMAGE_QUALITY` | no | Default `medium` (`low` \| `medium` \| `high` \| `auto`) |
 | `IMAGE_PROVIDER` | no | `openai` (default). `hairgen` exists as archived spike — not for production |
 | `HAIRGEN_API_KEY` | — | **Not used** — Hairgen integration no-go |
 

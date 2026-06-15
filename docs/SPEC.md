@@ -213,6 +213,7 @@ export async function POST(req: NextRequest) {
 - MIME: `image/jpeg`, `image/png`, `image/webp`
 - Timeout: 120s (`maxDuration`)
 - Model: `process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2"`
+- Quality: `process.env.OPENAI_IMAGE_QUALITY ?? "medium"` (`low` | `medium` | `high` | `auto`)
 
 ---
 
