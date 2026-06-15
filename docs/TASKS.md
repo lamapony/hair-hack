@@ -85,6 +85,12 @@ Status: `done` | `partial` | `pending`
 
 **Remaining:** Visual QA on real clinic photos (hairline + full goals).
 
+### T1.7.1 Fixture QA rubric — `done`
+
+**Shipped:** [QA-RUBRIC.md](./QA-RUBRIC.md), [public/fixtures/README.md](../public/fixtures/README.md) (local-only clinic photos).
+
+**Remaining:** Execute rubric on 3 fixtures × 3 goals; log results.
+
 ---
 
 ## Track 3D

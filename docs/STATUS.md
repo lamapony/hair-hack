@@ -55,6 +55,7 @@
 | T1.4.4 | Loading + cancel | ✅ | Spinner + AbortController cancel |
 | T1.5.1 | GitHub Actions CI | ✅ | `.github/workflows/ci.yml` on `main` |
 | T1.6.1 | Prompt tuning + `OPENAI_IMAGE_QUALITY` | ✅ | Default `medium`; validate on clinic photos |
+| T1.7.1 | Fixture QA rubric | ✅ | [QA-RUBRIC.md](./QA-RUBRIC.md) + `public/fixtures/` guide |
 
 **Legend:** ✅ done · 🔄 partial · ⏳ in progress / gap · ○ not started
 
@@ -114,7 +115,7 @@ Update this file (`STATUS.md`) and task status in `TASKS.md`.
 
 1. **TL.3** — send email today: [COUNSEL-SEND.md](./legal/COUNSEL-SEND.md)
 2. **L1.5** — complete [OPENAI-ENGINEERING-CHECKLIST.md](./legal/OPENAI-ENGINEERING-CHECKLIST.md) before production deploy
-3. **Clinic photo QA** — validate hairline/full prompts on real prospect photos; iterate `src/lib/prompts.ts`
+3. **Clinic photo QA** — run [QA-RUBRIC.md](./QA-RUBRIC.md) on local fixtures (`public/fixtures/local/`)
 
 ---
 

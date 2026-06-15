@@ -20,7 +20,7 @@
 | Tablet 768px+ | ✅ Pass | 768×1024 layout: workflow, consent, compare panel readable |
 | Error: bad file | ✅ Pass | Non-image upload shows "Please select an image file" (no stack trace) |
 
-**Verdict:** Automated + browser QA pass on dev (`localhost:3000`). **Remaining:** optional human pass with a real clinic photo on physical iPad; test hairline + full goals on real faces.
+**Verdict:** Automated + browser QA pass on dev (`localhost:3000`). **Remaining:** rubric pass on 3 local fixtures × 3 goals — [QA-RUBRIC.md](./QA-RUBRIC.md).
 
 ---
 
