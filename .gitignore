@@ -7,6 +7,8 @@ node_modules
 coverage/
 *.tsbuildinfo
 public/fixtures/local/
+.vercel/
 test-results/
 playwright-report/
 blob-report/
+.vercel

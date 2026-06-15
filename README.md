@@ -10,6 +10,7 @@ In-clinic demo: upload a photo → AI preview of hair restoration via **OpenAI I
 | [docs/PLAN.md](docs/PLAN.md) | Phases & architecture |
 | [docs/STATUS.md](docs/STATUS.md) | **Track dashboard** — start here |
 | [docs/TASKS.md](docs/TASKS.md) | Phase 1 task backlog |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Vercel deploy & live demo URL |
 | [docs/COLLABORATION.md](docs/COLLABORATION.md) | Team workflow & GitHub |
 | [docs/legal/COMPLIANCE.md](docs/legal/COMPLIANCE.md) | Legal risk register & gates |
 | [AGENTS.md](AGENTS.md) | AI agent instructions |
@@ -25,7 +26,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) or the hosted demo: [hair-hack.vercel.app](https://hair-hack.vercel.app).
 
 ## Team setup
 
@@ -72,11 +73,11 @@ npm test             # unit tests
 npm run test:watch   # tests in watch mode
 npm run typecheck    # tsc --noEmit
 npm run check        # typecheck + test + build
+npm run test:e2e     # Playwright smoke (mocked API)
 ```
 
 ## Status
 
-- **Phase 0 (MVP):** done
-- **Phase 1 (Foundation):** planned — see [docs/TASKS.md](docs/TASKS.md)
-- **Next for team:** invite collaborators on [lamapony/hair-hack](https://github.com/lamapony/hair-hack)
-- **Parallel tracks:** 3D API spike ([docs/3D-API-EVAL.md](docs/3D-API-EVAL.md)), legal ([docs/legal/COMPLIANCE.md](docs/legal/COMPLIANCE.md))
+- **Phase 1:** complete — see [docs/STATUS.md](docs/STATUS.md)
+- **Live demo:** [hair-hack.vercel.app](https://hair-hack.vercel.app)
+- **Legal gate:** off until counsel sign-off ([docs/legal/COMPLIANCE.md](docs/legal/COMPLIANCE.md))
